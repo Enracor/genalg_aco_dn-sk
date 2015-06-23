@@ -3,6 +3,9 @@ package map;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,6 +27,7 @@ public class Map {
 
 	private class Path {
 		public int x1, y1, x2, y2;
+		public double pheromones;
 
 		public Path(int x1, int y1, int x2, int y2) {
 			this.x1 = x1;
@@ -39,6 +43,18 @@ public class Map {
 	private int height;
 
 	public static Map fromFile(String path) {
+		try {
+			for (String line : Files.readAllLines(Paths.get(path))) {
+				if(line.contains("="))
+					continue;
+				for(String field : line.split(" ")){
+					//TODO
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
