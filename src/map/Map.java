@@ -39,12 +39,24 @@ public class Map {
 		this.height = height;
 	}
 
+	public Path getPath(int cityNr1, int cityNr2){
+		return null;
+	}
+	
 	public void addCity(int x, int y, int nr) {
 		cities.add(new City(x, y, nr));
 	}
 	
 	public int getCityCount(){
 		return cities.size();
+	}
+	
+	public void createAllPaths(){
+		for(City cityA: cities){
+			for(City cityB:cities){
+				
+			}
+		}
 	}
 
 	public void addPath(int x1, int y1, int x2, int y2) {
