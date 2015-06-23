@@ -61,10 +61,18 @@ public class Map {
 		BufferedImage image = new BufferedImage(w, h,
 				BufferedImage.TYPE_INT_RGB);
 
+		// Zeichne Hintergrund
 		Graphics2D g = image.createGraphics();
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, w, h);
-		
+
+		// Zeichne Cities
+		g.setColor(Color.BLACK);
+		for (City city : map) {
+			g.fillRect((int) (city.x * scale_factor - 2), (int) (city.y
+					* scale_factor - 2), 5, 5);
+		}
+
 		return image;
 	}
 

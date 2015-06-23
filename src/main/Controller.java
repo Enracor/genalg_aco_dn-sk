@@ -35,7 +35,14 @@ public class Controller implements GUIListener {
 	public void onStartACO(Conf conf) {
 		// TODO Auto-generated method stub
 		gui.log("Start ACO");
-		gui.showMap(new Map(100, 100).getImage(300));
+		Map map = new Map(100, 100);
+		map.addCity(0, 0);
+		map.addCity(50, 50);
+		map.addCity(5, 10);
+		map.addCity(20, 60);
+		map.addCity(70, 25);
+		map.addCity(100, 100);
+		gui.showMap(map.getImage(300));
 	}
 
 	private void showGUI() {
