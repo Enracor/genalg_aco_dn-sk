@@ -1,7 +1,9 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Graphics2D;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,7 +16,8 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-import javax.swing.JSeparator;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -25,6 +28,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 
 public class GUI extends JFrame {
 
@@ -36,40 +40,48 @@ public class GUI extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JLabel lbl_map;
 
-	
 	/**
 	 * Fügt dem Ausgabe-Bereich eine Nachricht in einer neuen Zeile hinzu.
-	 * @param message Nachricht, die hinzugefügt werden soll.
+	 * 
+	 * @param message
+	 *            Nachricht, die hinzugefügt werden soll.
 	 */
-	public void log(String message){
-		txt_log.setText(txt_log.getText()+"\n"+message);
+	public void log(String message) {
+		txt_log.setText(txt_log.getText() + "\n" + message);
 	}
-	
+
 	/**
 	 * Leert den Ausgabe-Bereich.
 	 */
-	public void clearLog(){
+	public void clearLog() {
 		txt_log.setText("");
+	}
+
+	public void showMap(BufferedImage mapImg) {
+		lbl_map.setIcon(new ImageIcon(mapImg));
+		lbl_map.setText("");
 	}
 
 	/**
 	 * Create the frame.
 	 */
 	public GUI(GUIListener listener) {
-		this.listener = listener;
+		this.listener = listener;		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 320);
+		setBounds(100, 100, 800, 400);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[] { 0, 0, 0, 0, 0 };
-		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+				0, 0 };
 		gbl_contentPane.columnWeights = new double[] { 0.0, 1.0, 1.0, 0.0,
 				Double.MIN_VALUE };
-		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
+				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
 		JLabel lblAllgemein = new JLabel("Allgemein");
@@ -126,10 +138,11 @@ public class GUI extends JFrame {
 		txt_log = new JTextArea();
 		scrollPane.setViewportView(txt_log);
 
-		JLabel lbl_map = new JLabel("lbl_map");
+		lbl_map = new JLabel("lbl_map");
 		GridBagConstraints gbc_lbl_map = new GridBagConstraints();
+		gbc_lbl_map.gridwidth = 10;
 		gbc_lbl_map.insets = new Insets(0, 0, 5, 0);
-		gbc_lbl_map.gridheight = 8;
+		gbc_lbl_map.gridheight = 10;
 		gbc_lbl_map.gridx = 3;
 		gbc_lbl_map.gridy = 1;
 		contentPane.add(lbl_map, gbc_lbl_map);
@@ -149,7 +162,7 @@ public class GUI extends JFrame {
 				new Thread(() -> listener.onStartTSP(getConf())).start();
 			}
 		});
-		
+
 		JLabel lblGenlen = new JLabel("param");
 		GridBagConstraints gbc_lblGenlen = new GridBagConstraints();
 		gbc_lblGenlen.anchor = GridBagConstraints.EAST;
@@ -157,7 +170,7 @@ public class GUI extends JFrame {
 		gbc_lblGenlen.gridx = 0;
 		gbc_lblGenlen.gridy = 4;
 		contentPane.add(lblGenlen, gbc_lblGenlen);
-		
+
 		textField = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
@@ -166,7 +179,7 @@ public class GUI extends JFrame {
 		gbc_textField.gridy = 4;
 		contentPane.add(textField, gbc_textField);
 		textField.setColumns(10);
-		
+
 		JLabel lblTodo = new JLabel("param");
 		GridBagConstraints gbc_lblTodo = new GridBagConstraints();
 		gbc_lblTodo.anchor = GridBagConstraints.EAST;
@@ -174,7 +187,7 @@ public class GUI extends JFrame {
 		gbc_lblTodo.gridx = 0;
 		gbc_lblTodo.gridy = 5;
 		contentPane.add(lblTodo, gbc_lblTodo);
-		
+
 		textField_1 = new JTextField();
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
@@ -183,7 +196,7 @@ public class GUI extends JFrame {
 		gbc_textField_1.gridy = 5;
 		contentPane.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
-		
+
 		JLabel lblParam = new JLabel("param");
 		GridBagConstraints gbc_lblParam = new GridBagConstraints();
 		gbc_lblParam.anchor = GridBagConstraints.EAST;
@@ -191,7 +204,7 @@ public class GUI extends JFrame {
 		gbc_lblParam.gridx = 0;
 		gbc_lblParam.gridy = 6;
 		contentPane.add(lblParam, gbc_lblParam);
-		
+
 		textField_3 = new JTextField();
 		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
 		gbc_textField_3.insets = new Insets(0, 0, 5, 5);
@@ -222,7 +235,7 @@ public class GUI extends JFrame {
 				new Thread(() -> listener.onStartACO(getConf())).start();
 			}
 		});
-		
+
 		JLabel lblTodo_1 = new JLabel("param");
 		GridBagConstraints gbc_lblTodo_1 = new GridBagConstraints();
 		gbc_lblTodo_1.anchor = GridBagConstraints.EAST;
@@ -230,7 +243,7 @@ public class GUI extends JFrame {
 		gbc_lblTodo_1.gridx = 0;
 		gbc_lblTodo_1.gridy = 9;
 		contentPane.add(lblTodo_1, gbc_lblTodo_1);
-		
+
 		textField_2 = new JTextField();
 		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
 		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
@@ -245,11 +258,24 @@ public class GUI extends JFrame {
 		gbc_btnStart_1.gridx = 1;
 		gbc_btnStart_1.gridy = 10;
 		contentPane.add(btnStart_1, gbc_btnStart_1);
+		
+		showMap(getPlaceholderImg());
 	}
 
 	private Conf getConf() {
 		// TODO
 		return null;
+	}
+	
+	private BufferedImage getPlaceholderImg(){
+		BufferedImage image = new BufferedImage(300, 300,
+				BufferedImage.TYPE_INT_RGB);
+
+		Graphics2D g = image.createGraphics();
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, 300, 300);
+		
+		return image;
 	}
 
 }
