@@ -42,6 +42,9 @@ public class Controller implements GUIListener {
 		map.addCity(20, 60);
 		map.addCity(70, 25);
 		map.addCity(100, 100);
+		map.addPath(50, 50, 20, 60);
+		map.addPath(20, 60, 70, 25);
+		map.addPath(70, 25, 100, 100);
 		gui.showMap(map.getImage(300));
 	}
 

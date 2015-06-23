@@ -9,8 +9,7 @@ import java.util.List;
 public class Map {
 
 	private class City {
-		public int x;
-		public int y;
+		public int x, y;
 
 		public City(int x, int y) {
 			this.x = x;
@@ -23,7 +22,19 @@ public class Map {
 		}
 	}
 
-	private List<City> map;
+	private class Path {
+		public int x1, y1, x2, y2;
+
+		public Path(int x1, int y1, int x2, int y2) {
+			this.x1 = x1;
+			this.y1 = y1;
+			this.x2 = x2;
+			this.y2 = y2;
+		}
+	}
+
+	private List<City> cities;
+	private List<Path> paths;
 	private int width;
 	private int height;
 
@@ -32,17 +43,22 @@ public class Map {
 	}
 
 	public Map(int width, int height) {
-		map = new LinkedList<>();
+		cities = new LinkedList<>();
+		paths = new LinkedList<>();
 		this.width = width;
 		this.height = height;
 	}
 
 	public void addCity(int x, int y) {
-		map.add(new City(x, y));
+		cities.add(new City(x, y));
+	}
+
+	public void addPath(int x1, int y1, int x2, int y2) {
+		paths.add(new Path(x1, y1, x2, y2));
 	}
 
 	public boolean isCity(int x, int y) {
-		return map.contains(new City(x, y));
+		return cities.contains(new City(x, y));
 	}
 
 	public int getWidth() {
@@ -68,9 +84,18 @@ public class Map {
 
 		// Zeichne Cities
 		g.setColor(Color.BLACK);
-		for (City city : map) {
+		for (City city : cities) {
 			g.fillRect((int) (city.x * scale_factor - 2), (int) (city.y
 					* scale_factor - 2), 5, 5);
+		}
+
+		// Zeichne Pfade
+		g.setColor(Color.DARK_GRAY);
+		for (Path path : paths) {
+			g.drawLine((int) (path.x1 * scale_factor),
+					(int) (path.y1 * scale_factor),
+					(int) (path.x2 * scale_factor),
+					(int) (path.y2 * scale_factor));
 		}
 
 		return image;
