@@ -11,32 +11,6 @@ import java.util.List;
 
 public class Map {
 
-	private class City {
-		public int x, y;
-
-		public City(int x, int y) {
-			this.x = x;
-			this.y = y;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			return ((City) obj).x == x && ((City) obj).y == y;
-		}
-	}
-
-	private class Path {
-		public int x1, y1, x2, y2;
-		public double pheromones;
-
-		public Path(int x1, int y1, int x2, int y2) {
-			this.x1 = x1;
-			this.y1 = y1;
-			this.x2 = x2;
-			this.y2 = y2;
-		}
-	}
-
 	private List<City> cities;
 	private List<Path> paths;
 	private int width;
