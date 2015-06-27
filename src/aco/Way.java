@@ -8,6 +8,8 @@
 
 package aco;
 
+import map.Path;
+
 /**
  * @author Sebastian
  *
@@ -15,27 +17,30 @@ package aco;
 public class Way
 {
     private Path[] paths;
-    private int count;
+    private int    count;
     private double length;
     
     public Way(int size)
     {
-        paths = Path[size];
+        paths = new Path[size];
         count = 0;
         length = 0;
     }
     
-    public void addPath(Path path){
+    public void addPath(Path path)
+    {
         paths[count] = path;
         count++;
         length += path.getLength();
     }
     
-    public Path getPath(int pos){
+    public Path getPath(int pos)
+    {
         return paths[pos];
     }
     
-    public double getLength(){
-        return length();
+    public double getLength()
+    {
+        return length;
     }
 }
