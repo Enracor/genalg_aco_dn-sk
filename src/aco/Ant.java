@@ -9,10 +9,13 @@
 package aco;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import utils.Utils;
 import map.City;
 import map.Map;
+import map.Path;
 
 /**
  * @author Sebastian
@@ -35,11 +38,63 @@ public class Ant
     
     public void nextStep()
     {
-        int i = 0;
         // determine City to go to
-        do
-        {
-            i = Utils.randInt(0, map.getCityCount() + 1);
-        } while (visitedCities.contains(i));
+    	choosePath();
+    }
+ 
+    private void choosePath(){
+    	Path[] pa = map.getPaths(pos);
+    	double sum = 0, d;
+    	List<ValueSet> availablePaths = new ArrayList<>();
+    	
+    	// berechne Gesamt Wahrscheinlichkeit
+    	for(Path p: pa){
+    		if(visitedCities.contains(p.city2.nr)){
+    			continue;
+    		}
+    		sum += p.weight;
+    	}
+    	
+    	// prüfe ob noch Städte vorhanden sind
+    	if(Double.compare(sum, 0) == 0) {
+    		throw new IllegalStateException("es sind keine Städte mehr vorhanden");
+    	}
+    	
+    	// berechne Einzel Wahrscheinlichkeiten
+    	for(Path p: pa){
+    		if(visitedCities.contains(p.city2.nr)){
+    			continue;
+    		}
+    		availablePaths.add(new ValueSet(p, p.weight / sum));
+    	}    	
+    	Collections.sort(availablePaths);
+    	
+    	// erzeuge Random Wert und wähle Path
+    	d = Utils.randDouble(0, 1);
+    	for(ValueSet vs: availablePaths){
+    		if(Double.compare(d, vs.probability)< 0){    			
+    			way.addPath(vs.path);
+    			pos = vs.path.city2.nr;
+    		}
+    	}
+    }
+    
+    private class ValueSet implements Comparable<ValueSet>{
+    	
+    	public Path path;
+    	public double probability;
+    	
+    	public ValueSet(Path path, double probability){
+    		this.path = path;
+    		this.probability = probability;
+    	}
+    	
+    	/* (non-Javadoc)
+		 * @see java.lang.Comparable#compareTo(java.lang.Object)
+		 */
+		@Override
+		public int compareTo(ValueSet vs) {
+			return Double.compare(probability, vs.probability);
+		}
     }
 }
