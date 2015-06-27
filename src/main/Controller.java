@@ -37,7 +37,8 @@ public class Controller implements GUIListener {
 		// TODO Auto-generated method stub
 		gui.log("Start ACO");
 		Map map = new Map(100, 100);
-		new ACO(10, map, 0, 0);
+		map.addCity(1, 1, 1);
+		new ACO(10, map, 0, 0).next();
 	}
 
 	private void showGUI() {

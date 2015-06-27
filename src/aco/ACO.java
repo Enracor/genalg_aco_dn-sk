@@ -20,6 +20,7 @@ public class ACO {
 	}
 
 	public void next() {
+		PathWeightCalculator.calculate(map);
 		createAnts();
 		for (Ant ant : ants) {
 			ant.nextStep();
