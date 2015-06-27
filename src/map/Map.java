@@ -34,6 +34,7 @@ public class Map {
 		paths = new LinkedList<>();
 		this.width = width;
 		this.height = height;
+		createAllPaths();
 	}
 
 	public Path getPath(int cityNr1, int cityNr2) {
@@ -79,16 +80,7 @@ public class Map {
 
 	public List<Path> getPaths() {
 		return paths;
-	}
-
-	public void createAllPaths() {
-		for (City cityA : cities) {
-			for (City cityB : cities) {
-				Path path = new Path(cityA, cityB);
-				paths.add(path);
-			}
-		}
-	}
+	}	
 
 	public int getWidth() {
 		return width;
@@ -96,6 +88,15 @@ public class Map {
 
 	public int getHeight() {
 		return height;
+	}
+	
+	public void createAllPaths() {
+		for (City cityA : cities) {
+			for (City cityB : cities) {
+				Path path = new Path(cityA, cityB);
+				paths.add(path);
+			}
+		}
 	}
 
 	private static int getMin(int a, int b) {
