@@ -70,7 +70,7 @@ public class Ant {
 		
 		// berechne einzel Wahrscheinlichkeiten
 		for (Path p : pa) {
-			if (visitedCities.contains(p.city2.nr)) {
+			if (visitedCities.contains(p.city1.nr) || visitedCities.contains(p.city2.nr)) {
 				continue;
 			}
 			availablePaths.add(new ValueSet(p, p.weight / sum));
@@ -82,7 +82,12 @@ public class Ant {
 		for (ValueSet vs : availablePaths) {
 			if (Double.compare(d, vs.probability) < 0) {
 				way.addPath(vs.path);
-				pos = vs.path.city2.nr;
+				if (vs.path.city1.nr == pos)
+				{			
+					pos = vs.path.city2.nr;
+				} else {
+					pos = vs.path.city1.nr;
+				}
 				break;
 			}
 		}
