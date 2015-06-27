@@ -8,11 +8,15 @@ public class ACO {
 	private int antCount;
 	private Ant[] ants;
 	private Map map;
+	private double alpha;
+	private double beta;
 
-	public ACO(int antCount, Map map) {
-		this.antCount = antCount;
+	public ACO(int antCount, Map map, double alpha, double beta) {
+		this.antCount = antCount;		
 		ants = new Ant[antCount];
 		this.map = map;
+		this.alpha = alpha;
+		this.beta = beta;
 	}
 
 	public void next() {
