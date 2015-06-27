@@ -18,7 +18,7 @@ public class PathWeightCalculator {
 
 		// Für alle Pfade: Oberen Teil der Formel berechnen
 		for (Path path : map.getPaths()) {
-			double attractiveness = 1 / path.length;
+			double attractiveness = 1.0 / path.length;
 			double top = Math.pow(path.pheromones, alpha)
 					* Math.pow(attractiveness, beta);
 			topValues.put(path, top);
@@ -33,7 +33,11 @@ public class PathWeightCalculator {
 		// weights für Pfade bestimmen
 		for (Path path : map.getPaths()) {
 			double top = topValues.get(path);
-			path.weight = top / (bottom - top);
+			double btm = (bottom - top);
+			if (btm == 0)
+				path.weight = 0;
+			else
+				path.weight = top / btm;
 		}
 	}
 }

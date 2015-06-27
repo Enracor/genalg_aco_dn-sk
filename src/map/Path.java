@@ -12,7 +12,6 @@ public class Path {
 	public Path(City city1, City city2) {
 		this.city1 = city1;
 		this.city2 = city2;
-		pheromones = 0;
 		length = getDistance(city1, city2);
 	}
 
@@ -25,6 +24,6 @@ public class Path {
 	}
 
 	private static double getDistance(City a, City b) {
-		return Math.sqrt(Math.pow(b.x - a.x, b.y - a.y));
+		return Math.sqrt(Math.pow(b.x - a.x, 2) + Math.pow(b.y - a.y, 2));
 	}
 }

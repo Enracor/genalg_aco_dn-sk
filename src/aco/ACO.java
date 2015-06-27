@@ -27,6 +27,10 @@ public class ACO {
 		}
 	}
 
+	public Way getShortestWay() {
+		return null;// TODO
+	}
+
 	private void createAnts() {
 		for (int i = 0; i < antCount; i++) {
 			// neue Ameise erzeugen und in zufällige Stadt setzen

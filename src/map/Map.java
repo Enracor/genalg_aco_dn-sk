@@ -93,6 +93,8 @@ public class Map {
 	public void createAllPaths() {
 		for (City cityA : cities) {
 			for (City cityB : cities) {
+				if(cityA==cityB)
+					continue;
 				Path path = new Path(cityA, cityB);
 				paths.add(path);
 			}

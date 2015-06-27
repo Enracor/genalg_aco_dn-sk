@@ -45,7 +45,7 @@ public class Controller implements GUIListener {
 		map.addCity(40, 50, 5);
 		map.addCity(20, 70, 6);
 		map.createAllPaths();
-		new ACO(10, map, 0, 0).next();
+		new ACO(10, map, 1.0, 5.0).next();
 		gui.showMap(WayDrawer.draw(null, map, 300));
 	}
 
