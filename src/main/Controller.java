@@ -3,6 +3,7 @@ package main;
 import java.awt.EventQueue;
 
 import aco.ACO;
+import aco.Way;
 import map.Map;
 import map.WayDrawer;
 import gui.Conf;
@@ -45,8 +46,8 @@ public class Controller implements GUIListener {
 		map.addCity(40, 50, 5);
 		map.addCity(20, 70, 6);
 		map.createAllPaths();
-		new ACO(10, map, 1.0, 5.0).next();
-		gui.showMap(WayDrawer.draw(null, map, 300));
+		Way way = new ACO(10, map, 1.0, 5.0).next();
+		gui.showMap(WayDrawer.draw(way, map, 300));
 	}
 
 	private void showGUI() {
