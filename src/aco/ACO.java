@@ -19,16 +19,19 @@ public class ACO {
 		PathWeightCalculator.beta = beta;
 	}
 
-	public void next() {
+	public Way next() {
 		PathWeightCalculator.calculate(map);
 		createAnts();
+		
+		Way shortestWay = null;
 		for (Ant ant : ants) {
-			ant.nextStep();
+			Way way = ant.walk();
+			if(shortestWay == null || way.getLength() < shortestWay.getLength()){
+				shortestWay = way;
+			}
 		}
-	}
-
-	public Way getShortestWay() {
-		return null;// TODO
+		
+		return shortestWay;
 	}
 
 	private void createAnts() {
