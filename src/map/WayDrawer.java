@@ -30,7 +30,7 @@ public class WayDrawer {
 
 		// Zeichne Pfade
 		g.setColor(Color.DARK_GRAY);
-		for (Path path : map.getPaths()) {
+		for (Path path : way.getPaths()) {
 			g.drawLine((int) (path.city1.x * scale_factor),
 					(int) (path.city1.y * scale_factor),
 					(int) (path.city2.x * scale_factor),
