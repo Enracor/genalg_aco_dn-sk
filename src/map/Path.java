@@ -25,6 +25,6 @@ public class Path {
 	}
 
 	private static double getDistance(City a, City b) {
-		return 42.0;
+		return Math.sqrt(Math.pow(b.x - a.x, b.y - a.y));
 	}
 }
