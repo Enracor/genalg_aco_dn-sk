@@ -40,11 +40,32 @@ public class Map {
 	}
 
 	public Path getPath(int cityNr1, int cityNr2) {
+		int city1 = getMin(cityNr1, cityNr2);
+		int city2 = getMax(cityNr1, cityNr2);
+
 		for (Path path : paths) {
-			if (path.city1.nr == cityNr1 && path.city2.nr == cityNr2)
+			if (path.city1.nr == city1 && path.city2.nr == city2)
 				return path;
 		}
 		return null;
+	}
+
+	/**
+	 * Gibt alle Pfade , die von der Ursprungsstadt origin abgehen zurück.
+	 * 
+	 * @param origin
+	 *            Ursprungsstadt
+	 * @return Pfade von origin augehend
+	 */
+	public Path[] getPaths(int origin) {
+		Path[] paths = new Path[getCityCount() - 1];
+		int j = 0;
+		for (int i = 1; i < getCityCount() + 1; i++) {
+			if (i == origin)
+				continue;
+			paths[j++] = getPath(origin, i);
+		}
+		return paths;
 	}
 
 	public void addCity(int x, int y, int nr) {
@@ -54,19 +75,19 @@ public class Map {
 	public int getCityCount() {
 		return cities.size();
 	}
-	
-	public List<City> getCities(){
+
+	public List<City> getCities() {
 		return cities;
 	}
-	
-	public List<Path> getPaths(){
+
+	public List<Path> getPaths() {
 		return paths;
 	}
 
 	public void createAllPaths() {
 		for (City cityA : cities) {
 			for (City cityB : cities) {
-				Path path = new Path(cityA, cityB, this);
+				Path path = new Path(cityA, cityB);
 				paths.add(path);
 			}
 		}
@@ -78,6 +99,18 @@ public class Map {
 
 	public int getHeight() {
 		return height;
-	}	
+	}
+
+	private static int getMin(int a, int b) {
+		if (a < b)
+			return a;
+		return b;
+	}
+
+	private static int getMax(int a, int b) {
+		if (a >= b)
+			return a;
+		return b;
+	}
 
 }

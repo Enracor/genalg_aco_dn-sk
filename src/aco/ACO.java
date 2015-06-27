@@ -3,6 +3,7 @@ package aco;
 import utils.Utils;
 import map.Map;
 import map.Path;
+import map.PathWeightCalculator;
 
 public class ACO {
 
@@ -14,8 +15,8 @@ public class ACO {
 		this.antCount = antCount;
 		ants = new Ant[antCount];
 		this.map = map;
-		Path.alpha = alpha;
-		Path.beta = beta;
+		PathWeightCalculator.alpha = alpha;
+		PathWeightCalculator.beta = beta;
 	}
 
 	public void next() {
