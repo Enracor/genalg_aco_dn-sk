@@ -39,7 +39,7 @@ public class Controller implements GUIListener {
 		gui.log("Start ACO");
 		Map map = new Map(100, 100);
 		map.addCity(1, 1, 1);
-		map.addCity(10, 10, 2);
+		map.addCity(15, 10, 2);
 		map.addCity(50, 50, 3);
 		map.addCity(100, 100, 4);
 		map.addCity(40, 50, 5);

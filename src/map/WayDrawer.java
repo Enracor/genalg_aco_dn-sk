@@ -2,6 +2,7 @@ package map;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 import aco.Way;
@@ -15,9 +16,13 @@ public class WayDrawer {
 
 		BufferedImage image = new BufferedImage(w, h,
 				BufferedImage.TYPE_INT_RGB);
+		Graphics2D g = image.createGraphics();
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+				RenderingHints.VALUE_INTERPOLATION_BICUBIC);
 
 		// Zeichne Hintergrund
-		Graphics2D g = image.createGraphics();
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, w, h);
 
