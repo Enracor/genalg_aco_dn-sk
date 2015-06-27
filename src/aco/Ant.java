@@ -36,6 +36,13 @@ public class Ant
         visitedCities = new ArrayList<>();
     }
     
+    public Way walk(){
+    	for(int i = 0;i < map.getCityCount();i++){
+    		choosePath();
+    	}
+    	return way;
+    }
+    
     public void nextStep()
     {
         // determine City to go to
@@ -46,17 +53,18 @@ public class Ant
     	Path[] pa = map.getPaths(pos);
     	double sum = 0, d;
     	List<ValueSet> availablePaths = new ArrayList<>();
-    	
+    	int i = 0;
     	// berechne Gesamt Wahrscheinlichkeit
     	for(Path p: pa){
     		if(visitedCities.contains(p.city2.nr)){
+    			i++;
     			continue;
     		}
     		sum += p.weight;
     	}
     	
     	// prüfe ob noch Städte vorhanden sind
-    	if(Double.compare(sum, 0) == 0) {
+    	if(i == map.getCityCount()) {
     		throw new IllegalStateException("es sind keine Städte mehr vorhanden");
     	}
     	
@@ -96,5 +104,9 @@ public class Ant
 		public int compareTo(ValueSet vs) {
 			return Double.compare(probability, vs.probability);
 		}
+    }
+    
+    public Way getWay(){
+    	return way;
     }
 }
