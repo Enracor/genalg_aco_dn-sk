@@ -2,26 +2,25 @@ package aco;
 
 import utils.Utils;
 import map.Map;
+import map.Path;
 
 public class ACO {
 
 	private int antCount;
 	private Ant[] ants;
 	private Map map;
-	private double alpha;
-	private double beta;
 
-	public ACO(int antCount, Map map) {
-		this.antCount = antCount;		
+	public ACO(int antCount, Map map, double alpha, double beta) {
+		this.antCount = antCount;
 		ants = new Ant[antCount];
 		this.map = map;
-		this.alpha = alpha;
-		this.beta = beta;
+		Path.alpha = alpha;
+		Path.beta = beta;
 	}
 
 	public void next() {
 		createAnts();
-		for(Ant ant : ants){
+		for (Ant ant : ants) {
 			ant.nextStep();
 		}
 	}

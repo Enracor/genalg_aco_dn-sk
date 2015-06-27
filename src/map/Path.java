@@ -3,7 +3,7 @@ package map;
 public class Path {
 	public static double alpha = 0.0;
 	public static double beta = 0.0;
-	
+
 	public City city1, city2;
 	public double pheromones;
 	public double weight;
@@ -30,9 +30,14 @@ public class Path {
 	private static double getDistance(City a, City b) {
 		return 42.0;
 	}
-	
-	private double getWeight(){
-		return 0; 		
-	}
 
+	private double getWeight(){
+		//Oberer Teil der Formel
+		double top = (Math.pow(pheromones, alpha) * Math.pow(attractivenes, beta));
+		
+		//Unterer Teil
+		
+		double bottom  = 1;
+		return top/bottom;
+	}
 }
