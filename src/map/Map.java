@@ -66,7 +66,7 @@ public class Map {
 	public void createAllPaths() {
 		for (City cityA : cities) {
 			for (City cityB : cities) {
-				Path path = new Path(cityA, cityB);
+				Path path = new Path(cityA, cityB, this);
 				paths.add(path);
 			}
 		}

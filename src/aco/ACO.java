@@ -11,7 +11,7 @@ public class ACO {
 	private double alpha;
 	private double beta;
 
-	public ACO(int antCount, Map map, double alpha, double beta) {
+	public ACO(int antCount, Map map) {
 		this.antCount = antCount;		
 		ants = new Ant[antCount];
 		this.map = map;
