@@ -10,6 +10,7 @@ package aco;
 
 import java.util.ArrayList;
 
+import utils.Utils;
 import map.City;
 import map.Map;
 
@@ -38,7 +39,7 @@ public class Ant
         // determine City to go to
         do
         {
-            i = randInt(0, map.getCityCount() + 1);
+            i = Utils.randInt(0, map.getCityCount() + 1);
         } while (visitedCities.contains(i));
     }
 }
