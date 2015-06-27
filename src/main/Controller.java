@@ -31,7 +31,6 @@ public class Controller implements GUIListener {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
