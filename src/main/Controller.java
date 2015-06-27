@@ -2,6 +2,7 @@ package main;
 
 import java.awt.EventQueue;
 
+import aco.ACO;
 import map.Map;
 import gui.Conf;
 import gui.GUI;
@@ -35,6 +36,8 @@ public class Controller implements GUIListener {
 	public void onStartACO(Conf conf) {
 		// TODO Auto-generated method stub
 		gui.log("Start ACO");
+		Map map = new Map(100, 100);
+		new ACO(10, map);
 	}
 
 	private void showGUI() {
