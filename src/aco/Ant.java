@@ -25,6 +25,8 @@ public class Ant {
 	
 	private int					pos;
 	
+	private int startPos;
+	
 	private Way					way;
 	
 	private ArrayList<Integer>	visitedCities;
@@ -32,6 +34,7 @@ public class Ant {
 	public Ant(Map map, int startPos) {
 		this.map = map;
 		pos = startPos;
+		this.startPos = startPos;
 		way = new Way(map.getCityCount());
 		visitedCities = new ArrayList<>();
 	}
@@ -41,6 +44,7 @@ public class Ant {
 		for (int i = 0; i < map.getCityCount(); i++) {
 			choosePath();
 		}
+		way.addPath(map.getPath(startPos, pos));
 		return way;
 	}
 	
@@ -69,11 +73,14 @@ public class Ant {
 		if (i >= map.getCityCount()) { throw new IllegalStateException("es sind keine Städte mehr vorhanden"); }
 		
 		// berechne einzel Wahrscheinlichkeiten
+		final double DELTA = 1E-7;
 		for (Path p : pa) {
 			if (visitedCities.contains(p.city1.nr) || visitedCities.contains(p.city2.nr)) {
 				continue;
 			}
-			availablePaths.add(new ValueSet(p, p.weight / sum));
+			if (sum - 0 < DELTA) {
+				availablePaths.add(new ValueSet(p, p.weight / sum));
+			}
 		}
 		Collections.sort(availablePaths);
 		
@@ -82,8 +89,8 @@ public class Ant {
 		for (ValueSet vs : availablePaths) {
 			if (Double.compare(d, vs.probability) < 0) {
 				way.addPath(vs.path);
-				if (vs.path.city1.nr == pos)
-				{			
+				visitedCities.add(pos);
+				if (vs.path.city1.nr == pos) {
 					pos = vs.path.city2.nr;
 				} else {
 					pos = vs.path.city1.nr;
