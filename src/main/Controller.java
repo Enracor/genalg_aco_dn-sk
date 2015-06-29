@@ -2,6 +2,7 @@ package main;
 
 import java.awt.EventQueue;
 
+import utils.Utils;
 import aco.ACO;
 import aco.Way;
 import map.Map;
@@ -35,18 +36,17 @@ public class Controller implements GUIListener {
 
 	@Override
 	public void onStartACO(Conf conf) {
-		// TODO Auto-generated method stub
 		gui.log("Start ACO");
 		Map map = new Map(100, 100);
-		map.addCity(1, 1, 1);
-		map.addCity(15, 10, 2);
-		map.addCity(50, 50, 3);
-		map.addCity(100, 100, 4);
-		map.addCity(40, 50, 5);
-		map.addCity(20, 70, 6);
+
+		for (int i = 0; i < 50; i++) {
+			map.addCity(Utils.randInt(0, 100), Utils.randInt(1, 100), i + 1);
+		}
+
 		map.createAllPaths();
-		Way way = new ACO(10, map, 1.0, 5.0).next();
-		gui.showMap(WayDrawer.draw(way, map, 300));
+		ACO aco = new ACO(10, map, 1.0, 5.0);
+		Way way = aco.next();
+		gui.showMap(WayDrawer.draw(way, map, 500));
 	}
 
 	private void showGUI() {

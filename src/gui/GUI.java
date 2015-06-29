@@ -59,7 +59,7 @@ public class GUI extends JFrame {
 	public GUI(GUIListener listener) {
 		this.listener = listener;		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 400);
+		setBounds(100, 100, 1000, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -257,7 +257,7 @@ public class GUI extends JFrame {
 	}
 	
 	private BufferedImage getPlaceholderImg(){
-		BufferedImage image = new BufferedImage(300, 300,
+		BufferedImage image = new BufferedImage(500, 500,
 				BufferedImage.TYPE_INT_RGB);
 
 		Graphics2D g = image.createGraphics();
