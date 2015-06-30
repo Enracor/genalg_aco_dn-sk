@@ -37,6 +37,7 @@ public class Ant {
 		this.startPos = startPos;
 		way = new Way(map.getCityCount());
 		visitedCities = new ArrayList<>();
+		visitedCities.add(startPos);
 	}
 	
 	public Way walk() {
@@ -44,6 +45,7 @@ public class Ant {
 		for (int i = 0; i < map.getCityCount(); i++) {
 			choosePath();
 		}
+		// add last path to complete circle
 		way.addPath(map.getPath(startPos, pos));
 		return way;
 	}
