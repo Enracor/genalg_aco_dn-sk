@@ -45,7 +45,8 @@ public class Map {
 			if (path.city1.nr == city1 && path.city2.nr == city2)
 				return path;
 		}
-		return null;
+		
+		throw new IllegalStateException("Kein Pfad von " + cityNr1 + " nach " + cityNr2);
 	}
 
 	/**

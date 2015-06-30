@@ -44,9 +44,13 @@ public class Controller implements GUIListener {
 		}
 
 		map.createAllPaths();
-		ACO aco = new ACO(10, map, 1.0, 5.0);
-		Way way = aco.next();
-		gui.showMap(WayDrawer.draw(way, map, 500));
+		ACO aco = new ACO(10, map, 1.0, 5.0, 0.5);
+		for (int i = 0; i < 100; i++) {
+			gui.log("Starte Durchlauf: " + i);
+			Way way = aco.next();
+			gui.showMap(WayDrawer.draw(way, map, 500));
+			
+		}
 	}
 
 	private void showGUI() {
