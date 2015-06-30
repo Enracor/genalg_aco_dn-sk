@@ -5,12 +5,23 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
-import aco.Way;
+public class PheromoneDrawer {
+	private static Comparator<Path> pheromoneComp = new Comparator<Path>() {
+		public int compare(Path p1, Path p2) {
+			if (p1.pheromones < p2.pheromones)
+				return -1;
+			if (p1.pheromones > p2.pheromones)
+				return 1;
+			return 0;
+		}
+	};
 
-public class WayDrawer {
-
-	public static BufferedImage draw(Way way, Map map, int width) {
+	public static BufferedImage draw(Map map, int width) {
 		double scale_factor = (double) width / (double) map.getWidth();
 		int w = width;
 		int h = (int) (map.getHeight() * scale_factor);
@@ -29,10 +40,15 @@ public class WayDrawer {
 		g.fillRect(0, 0, w, h);
 
 		// Zeichne Pfade
-		int path_count = 0;
-		for (Path path : way.getPaths()) {
-			g.setColor(getPathColor((float) (path_count++ / (float) way
-					.getPaths().length)));
+		List<Path> paths = map.getPaths();
+		List<Path> sortedPaths = new ArrayList<Path>(paths.size());
+		for (Path path : paths) {
+			sortedPaths.add(path);
+		}
+		Collections.sort(sortedPaths, pheromoneComp);
+		Path highest = getPathWithMostPheromones(map);
+		for (Path path : sortedPaths) {
+			g.setColor(getPathColor((float) (path.pheromones / highest.pheromones)));
 			g.drawLine((int) (path.city1.x * scale_factor),
 					(int) (path.city1.y * scale_factor),
 					(int) (path.city2.x * scale_factor),
@@ -50,36 +66,23 @@ public class WayDrawer {
 		return image;
 	}
 
+	private static Path getPathWithMostPheromones(Map map) {
+		Path highest = null;
+		for (Path path : map.getPaths()) {
+			if (highest == null || path.pheromones > highest.pheromones)
+				highest = path;
+		}
+		return highest;
+	}
+
 	private static Color getPathColor(float value) {
 		float R = 0;
 		float G = 0;
 		float B = 0;
 
-		if (0 <= value && value <= 1 / 8F) {
-			R = 0;
-			G = 0;
-			B = (float) (4 * value + .5); // .5 - 1 // b = 1/2
-		} else if (1 / 8 < value && value <= 3 / 8F) {
-			R = 0;
-			G = (float) (4 * value - .5); // 0 - 1 // b = - 1/2
-			B = 1; // small fix
-		} else if (3 / 8 < value && value <= 5 / 8F) {
-			R = (float) (4 * value - 1.5); // 0 - 1 // b = - 3/2
-			G = 1;
-			B = (float) (-4 * value + 2.5); // 1 - 0 // b = 5/2
-		} else if (5 / 8 < value && value <= 7 / 8F) {
-			R = 1;
-			G = (float) (-4 * value + 3.5); // 1 - 0 // b = 7/2
-			B = 0;
-		} else if (7 / 8 < value && value <= 1F) {
-			R = (float) (-4 * value + 4.5); // 1 - .5 // b = 9/2
-			G = 0;
-			B = 0;
-		} else { // should never happen - value > 1
-			R = (float) .5;
-			G = 0;
-			B = 0;
-		}
+		R = 1F;
+		G = 1F - value;
+		B = 1F - value;
 
 		return new Color(R, G, B);
 	}

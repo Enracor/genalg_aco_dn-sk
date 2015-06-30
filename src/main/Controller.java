@@ -6,6 +6,7 @@ import utils.Utils;
 import aco.ACO;
 import aco.Way;
 import map.Map;
+import map.PheromoneDrawer;
 import map.WayDrawer;
 import gui.Conf;
 import gui.GUI;
@@ -39,7 +40,7 @@ public class Controller implements GUIListener {
 		gui.log("Start ACO");
 		Map map = new Map(100, 100);
 
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 100; i++) {
 			map.addCity(Utils.randInt(0, 100), Utils.randInt(1, 100), i + 1);
 		}
 
@@ -48,8 +49,9 @@ public class Controller implements GUIListener {
 		for (int i = 0; i < conf.aco_nr_of_runs; i++) {
 			gui.log("Starte Durchlauf: " + i);
 			Way way = aco.next();
-			gui.showMap(WayDrawer.draw(way, map, 500));
-			
+			gui.showMap(WayDrawer.draw(way, map, 450));
+			gui.showPheromoneMap(PheromoneDrawer.draw(map, 450));
+			gui.log("Length: " + way.getLength());
 		}
 	}
 

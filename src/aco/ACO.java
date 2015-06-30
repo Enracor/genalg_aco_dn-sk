@@ -38,7 +38,7 @@ public class ACO {
 		}
 
 		// Pfade mit Pheromonen markieren
-		PheromoneMarker.mark(ants, evaporation);
+		PheromoneMarker.mark(map, ants, evaporation);
 
 		return shortestWay;
 	}

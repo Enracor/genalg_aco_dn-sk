@@ -92,9 +92,13 @@ public class Map {
 	}
 	
 	public void createAllPaths() {
+		int acount=0;		
 		for (City cityA : cities) {
+			acount++;
+			int bcount=0;
 			for (City cityB : cities) {
-				if(cityA==cityB)
+				bcount++;
+				if(cityA==cityB || bcount < acount)
 					continue;
 				Path path = new Path(cityA, cityB);
 				paths.add(path);

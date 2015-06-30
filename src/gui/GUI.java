@@ -30,6 +30,7 @@ public class GUI extends JFrame {
 	private JTextField txt_aco_antcount;
 	private JTextField textField_3;
 	private JLabel lbl_map;
+	private JLabel lbl_pmap;
 	private JTextField txt_aco_runs;
 
 	/**
@@ -53,6 +54,11 @@ public class GUI extends JFrame {
 		lbl_map.setIcon(new ImageIcon(mapImg));
 		lbl_map.setText("");
 	}
+	
+	public void showPheromoneMap(BufferedImage mapImg) {
+		lbl_pmap.setIcon(new ImageIcon(mapImg));
+		lbl_pmap.setText("");
+	}
 
 	/**
 	 * Create the frame.
@@ -60,18 +66,18 @@ public class GUI extends JFrame {
 	public GUI(GUIListener listener) {
 		this.listener = listener;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 550);
+		setBounds(100, 100, 1100, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] { 0, 0, 0, 0, 0 };
+		gbl_contentPane.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0 };
-		gbl_contentPane.columnWeights = new double[] { 0.0, 1.0, 1.0, 0.0,
-				Double.MIN_VALUE };
+				0, 0, 0, 0, 0 };
+		gbl_contentPane.columnWeights = new double[] { 0.0, 1.0, 0.0,
+				Double.MIN_VALUE, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
 		JLabel lblAllgemein = new JLabel("Allgemein");
@@ -82,14 +88,6 @@ public class GUI extends JFrame {
 		gbc_lblAllgemein.gridx = 0;
 		gbc_lblAllgemein.gridy = 0;
 		contentPane.add(lblAllgemein, gbc_lblAllgemein);
-
-		JLabel lblAusgabe = new JLabel("Ausgabe");
-		lblAusgabe.setFont(new Font("Dialog", Font.BOLD, 14));
-		GridBagConstraints gbc_lblAusgabe = new GridBagConstraints();
-		gbc_lblAusgabe.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAusgabe.gridx = 2;
-		gbc_lblAusgabe.gridy = 0;
-		contentPane.add(lblAusgabe, gbc_lblAusgabe);
 
 		JLabel lblFile = new JLabel("Datei");
 		GridBagConstraints gbc_lblFile = new GridBagConstraints();
@@ -112,29 +110,34 @@ public class GUI extends JFrame {
 		lblKarte.setFont(new Font("Dialog", Font.BOLD, 14));
 		GridBagConstraints gbc_lblKarte = new GridBagConstraints();
 		gbc_lblKarte.insets = new Insets(0, 0, 5, 5);
-		gbc_lblKarte.gridx = 3;
+		gbc_lblKarte.gridx = 2;
 		gbc_lblKarte.gridy = 0;
 		contentPane.add(lblKarte, gbc_lblKarte);
 
-		JScrollPane scrollPane = new JScrollPane();
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.insets = new Insets(0, 0, 0, 5);
-		gbc_scrollPane.gridheight = 11;
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 2;
-		gbc_scrollPane.gridy = 1;
-		contentPane.add(scrollPane, gbc_scrollPane);
-
-		txt_log = new JTextArea();
-		scrollPane.setViewportView(txt_log);
-
 		lbl_map = new JLabel("lbl_map");
 		GridBagConstraints gbc_lbl_map = new GridBagConstraints();
+		gbc_lbl_map.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_map.gridwidth = 10;
 		gbc_lbl_map.gridheight = 11;
-		gbc_lbl_map.gridx = 3;
+		gbc_lbl_map.gridx = 2;
 		gbc_lbl_map.gridy = 1;
 		contentPane.add(lbl_map, gbc_lbl_map);
+		
+		JLabel lblPheromonkarte = new JLabel("Pheromon-Karte");
+		GridBagConstraints gbc_lblPheromonkarte = new GridBagConstraints();
+		gbc_lblPheromonkarte.insets = new Insets(0, 0, 5, 5);
+		gbc_lblPheromonkarte.gridx = 12;
+		gbc_lblPheromonkarte.gridy = 0;
+		contentPane.add(lblPheromonkarte, gbc_lblPheromonkarte);
+		
+		lbl_pmap = new JLabel("");
+		GridBagConstraints gbc_lbl_pmap = new GridBagConstraints();
+		gbc_lbl_pmap.gridwidth = 10;
+		gbc_lbl_pmap.gridheight = 11;
+		gbc_lbl_pmap.insets = new Insets(0, 0, 5, 0);
+		gbc_lbl_pmap.gridx = 12;
+		gbc_lbl_pmap.gridy = 1;
+		contentPane.add(lbl_pmap, gbc_lbl_pmap);
 
 		JLabel lblTsp = new JLabel("TSP");
 		lblTsp.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -262,12 +265,25 @@ public class GUI extends JFrame {
 		txt_aco_runs.setColumns(10);
 		GridBagConstraints gbc_btnStart_1 = new GridBagConstraints();
 		gbc_btnStart_1.anchor = GridBagConstraints.EAST;
-		gbc_btnStart_1.insets = new Insets(0, 0, 0, 5);
+		gbc_btnStart_1.insets = new Insets(0, 0, 5, 5);
 		gbc_btnStart_1.gridx = 1;
 		gbc_btnStart_1.gridy = 11;
 		contentPane.add(btnStart_1, gbc_btnStart_1);
+		
+				JScrollPane scrollPane = new JScrollPane();
+				GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+				gbc_scrollPane.gridwidth = 20;
+				gbc_scrollPane.gridheight = 12;
+				gbc_scrollPane.fill = GridBagConstraints.BOTH;
+				gbc_scrollPane.gridx = 2;
+				gbc_scrollPane.gridy = 12;
+				contentPane.add(scrollPane, gbc_scrollPane);
+				
+						txt_log = new JTextArea();
+						scrollPane.setViewportView(txt_log);
 
-		showMap(getPlaceholderImg());
+		showMap(getPlaceholderImg(450,450));
+		showPheromoneMap(getPlaceholderImg(450,450));
 	}
 
 	private Conf getConf() {
@@ -276,13 +292,13 @@ public class GUI extends JFrame {
 		return new Conf(aco_ant_count, aco_nr_of_runs);
 	}
 
-	private BufferedImage getPlaceholderImg() {
-		BufferedImage image = new BufferedImage(500, 500,
+	private BufferedImage getPlaceholderImg(int w, int h) {
+		BufferedImage image = new BufferedImage(w,h,
 				BufferedImage.TYPE_INT_RGB);
 
 		Graphics2D g = image.createGraphics();
 		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, 300, 300);
+		g.fillRect(0, 0, w, h);
 
 		return image;
 	}
