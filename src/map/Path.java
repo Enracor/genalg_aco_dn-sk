@@ -13,6 +13,7 @@ public class Path {
 		this.city1 = city1;
 		this.city2 = city2;
 		length = getDistance(city1, city2);
+		pheromones = 1E-05;
 	}
 
 	public void addPheromones(double value) {
