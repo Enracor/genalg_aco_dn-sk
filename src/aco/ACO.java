@@ -21,16 +21,23 @@ public class ACO {
 
 	public Way next() {
 		PathWeightCalculator.calculate(map);
+
+		// Ameisen erzeugen
 		createAnts();
-		
+
+		// Ameisen laufen lassen
 		Way shortestWay = null;
 		for (Ant ant : ants) {
 			Way way = ant.walk();
-			if(shortestWay == null || way.getLength() < shortestWay.getLength()){
+			if (shortestWay == null
+					|| way.getLength() < shortestWay.getLength()) {
 				shortestWay = way;
 			}
 		}
-		
+
+		// Pfade mit Pheromonen markieren
+		PheromoneMarker.mark(ants);
+
 		return shortestWay;
 	}
 
