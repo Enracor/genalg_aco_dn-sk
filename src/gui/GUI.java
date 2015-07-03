@@ -98,6 +98,7 @@ public class GUI extends JFrame {
 		contentPane.add(lblFile, gbc_lblFile);
 
 		txt_file = new JTextField();
+		txt_file.setText("map.txt");
 		GridBagConstraints gbc_txt_file = new GridBagConstraints();
 		gbc_txt_file.insets = new Insets(0, 0, 5, 5);
 		gbc_txt_file.fill = GridBagConstraints.HORIZONTAL;

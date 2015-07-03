@@ -3,8 +3,10 @@ package map;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Map {
 
@@ -15,15 +17,39 @@ public class Map {
 
 	public static Map fromFile(String path) {
 		try {
-			for (String line : Files.readAllLines(Paths.get(path))) {
-				if (line.contains("="))
-					continue;
+			// Zeilen auslesen
+			List<String> lines = Files.readAllLines(Paths.get(path)).stream()
+					.filter((line) -> !line.contains("="))
+					.collect(Collectors.toList());
+			// Liste mit Zeilen. Zeilen enthalten Felder
+			List<List<Integer>> fields = new ArrayList<List<Integer>>();
+
+			// Felder auslesen und in Liste schreiben
+			for (String line : lines) {
+				List<Integer> row = new ArrayList<Integer>();
+				fields.add(row);
 				for (String field : line.split(" ")) {
-					// TODO
+					row.add(Integer.parseInt(field));
 				}
 			}
+
+			// Map erzeugen
+			Map map = new Map(fields.get(0).size(), fields.size());
+			int x = 0, y = 0, city=1;
+			for (List<Integer> row : fields) {
+				x=0;
+				for(int field : row){
+					if(field != 0){
+						map.addCity(x, y, city++);
+					}
+					x++;
+				}
+				y++;
+			}
+			
+			map.createAllPaths();
+			return map;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -45,8 +71,9 @@ public class Map {
 			if (path.city1.nr == city1 && path.city2.nr == city2)
 				return path;
 		}
-		
-		throw new IllegalStateException("Kein Pfad von " + cityNr1 + " nach " + cityNr2);
+
+		throw new IllegalStateException("Kein Pfad von " + cityNr1 + " nach "
+				+ cityNr2);
 	}
 
 	/**
@@ -81,7 +108,7 @@ public class Map {
 
 	public List<Path> getPaths() {
 		return paths;
-	}	
+	}
 
 	public int getWidth() {
 		return width;
@@ -90,15 +117,15 @@ public class Map {
 	public int getHeight() {
 		return height;
 	}
-	
+
 	public void createAllPaths() {
-		int acount=0;		
+		int acount = 0;
 		for (City cityA : cities) {
 			acount++;
-			int bcount=0;
+			int bcount = 0;
 			for (City cityB : cities) {
 				bcount++;
-				if(cityA==cityB || bcount < acount)
+				if (cityA == cityB || bcount < acount)
 					continue;
 				Path path = new Path(cityA, cityB);
 				paths.add(path);

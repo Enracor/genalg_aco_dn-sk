@@ -38,13 +38,13 @@ public class Controller implements GUIListener {
 	@Override
 	public void onStartACO(Conf conf) {
 		gui.log("Start ACO");
-		Map map = new Map(100, 100);
-
-		for (int i = 0; i < 50; i++) {
-			map.addCity(Utils.randInt(0, 100), Utils.randInt(1, 100), i + 1);
-		}
-
-		map.createAllPaths();
+//		Map map = new Map(100, 100);
+//
+//		for (int i = 0; i < 50; i++) {
+//			map.addCity(Utils.randInt(0, 100), Utils.randInt(1, 100), i + 1);
+//		}		
+		//map.createAllPaths();
+		Map map = Map.fromFile(conf.file);
 		ACO aco = new ACO(conf.aco_ant_count, map, 0.7, 5.0, 0.5);
 		for (int i = 0; i < conf.aco_nr_of_runs; i++) {
 			gui.log("Starte Durchlauf: " + i);
