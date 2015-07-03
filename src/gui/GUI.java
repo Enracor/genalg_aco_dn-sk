@@ -2,22 +2,32 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
 import java.awt.Font;
+
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
+
+import jdk.nashorn.internal.ir.CallNode.EvalArgs;
 
 public class GUI extends JFrame {
 
@@ -32,6 +42,9 @@ public class GUI extends JFrame {
 	private JLabel lbl_map;
 	private JLabel lbl_pmap;
 	private JTextField txt_aco_runs;
+	private JTextField txt_alpha;
+	private JTextField txt_beta;
+	private JTextField txt_evaporation;
 
 	/**
 	 * Fügt dem Ausgabe-Bereich eine Nachricht in einer neuen Zeile hinzu.
@@ -54,7 +67,7 @@ public class GUI extends JFrame {
 		lbl_map.setIcon(new ImageIcon(mapImg));
 		lbl_map.setText("");
 	}
-	
+
 	public void showPheromoneMap(BufferedImage mapImg) {
 		lbl_pmap.setIcon(new ImageIcon(mapImg));
 		lbl_pmap.setText("");
@@ -71,13 +84,15 @@ public class GUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_contentPane.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0,
+				0, 0, 0, 0 };
 		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0 };
+				0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_contentPane.columnWeights = new double[] { 0.0, 1.0, 0.0,
 				Double.MIN_VALUE, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
 		JLabel lblAllgemein = new JLabel("Allgemein");
@@ -119,22 +134,22 @@ public class GUI extends JFrame {
 		GridBagConstraints gbc_lbl_map = new GridBagConstraints();
 		gbc_lbl_map.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_map.gridwidth = 10;
-		gbc_lbl_map.gridheight = 11;
+		gbc_lbl_map.gridheight = 14;
 		gbc_lbl_map.gridx = 2;
 		gbc_lbl_map.gridy = 1;
 		contentPane.add(lbl_map, gbc_lbl_map);
-		
+
 		JLabel lblPheromonkarte = new JLabel("Pheromon-Karte");
 		GridBagConstraints gbc_lblPheromonkarte = new GridBagConstraints();
 		gbc_lblPheromonkarte.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPheromonkarte.gridx = 12;
 		gbc_lblPheromonkarte.gridy = 0;
 		contentPane.add(lblPheromonkarte, gbc_lblPheromonkarte);
-		
+
 		lbl_pmap = new JLabel("");
 		GridBagConstraints gbc_lbl_pmap = new GridBagConstraints();
 		gbc_lbl_pmap.gridwidth = 10;
-		gbc_lbl_pmap.gridheight = 11;
+		gbc_lbl_pmap.gridheight = 14;
 		gbc_lbl_pmap.insets = new Insets(0, 0, 5, 0);
 		gbc_lbl_pmap.gridx = 12;
 		gbc_lbl_pmap.gridy = 1;
@@ -256,7 +271,7 @@ public class GUI extends JFrame {
 		contentPane.add(lblRuns, gbc_lblRuns);
 
 		txt_aco_runs = new JTextField();
-		txt_aco_runs.setText("100");
+		txt_aco_runs.setText("100000");
 		GridBagConstraints gbc_txt_aco_runs = new GridBagConstraints();
 		gbc_txt_aco_runs.insets = new Insets(0, 0, 5, 5);
 		gbc_txt_aco_runs.fill = GridBagConstraints.HORIZONTAL;
@@ -264,38 +279,97 @@ public class GUI extends JFrame {
 		gbc_txt_aco_runs.gridy = 10;
 		contentPane.add(txt_aco_runs, gbc_txt_aco_runs);
 		txt_aco_runs.setColumns(10);
+
+		JLabel lblAlpha = new JLabel("Alpha");
+		GridBagConstraints gbc_lblAlpha = new GridBagConstraints();
+		gbc_lblAlpha.anchor = GridBagConstraints.EAST;
+		gbc_lblAlpha.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAlpha.gridx = 0;
+		gbc_lblAlpha.gridy = 11;
+		contentPane.add(lblAlpha, gbc_lblAlpha);
+
+		txt_alpha = new JTextField();
+		txt_alpha.setText("1.0");
+		GridBagConstraints gbc_txt_alpha = new GridBagConstraints();
+		gbc_txt_alpha.anchor = GridBagConstraints.NORTH;
+		gbc_txt_alpha.insets = new Insets(0, 0, 5, 5);
+		gbc_txt_alpha.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txt_alpha.gridx = 1;
+		gbc_txt_alpha.gridy = 11;
+		contentPane.add(txt_alpha, gbc_txt_alpha);
+		txt_alpha.setColumns(10);
+
+		JLabel lblBeta = new JLabel("Beta");
+		GridBagConstraints gbc_lblBeta = new GridBagConstraints();
+		gbc_lblBeta.anchor = GridBagConstraints.EAST;
+		gbc_lblBeta.insets = new Insets(0, 0, 5, 5);
+		gbc_lblBeta.gridx = 0;
+		gbc_lblBeta.gridy = 12;
+		contentPane.add(lblBeta, gbc_lblBeta);
+
+		txt_beta = new JTextField();
+		txt_beta.setText("5.0");
+		GridBagConstraints gbc_txt_beta = new GridBagConstraints();
+		gbc_txt_beta.insets = new Insets(0, 0, 5, 5);
+		gbc_txt_beta.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txt_beta.gridx = 1;
+		gbc_txt_beta.gridy = 12;
+		contentPane.add(txt_beta, gbc_txt_beta);
+		txt_beta.setColumns(10);
+
+		JLabel lblEvaporation = new JLabel("evaporation");
+		GridBagConstraints gbc_lblEvaporation = new GridBagConstraints();
+		gbc_lblEvaporation.anchor = GridBagConstraints.EAST;
+		gbc_lblEvaporation.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEvaporation.gridx = 0;
+		gbc_lblEvaporation.gridy = 13;
+		contentPane.add(lblEvaporation, gbc_lblEvaporation);
+
+		txt_evaporation = new JTextField();
+		txt_evaporation.setText("0.5");
+		GridBagConstraints gbc_txt_evaporation = new GridBagConstraints();
+		gbc_txt_evaporation.insets = new Insets(0, 0, 5, 5);
+		gbc_txt_evaporation.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txt_evaporation.gridx = 1;
+		gbc_txt_evaporation.gridy = 13;
+		contentPane.add(txt_evaporation, gbc_txt_evaporation);
+		txt_evaporation.setColumns(10);
 		GridBagConstraints gbc_btnStart_1 = new GridBagConstraints();
 		gbc_btnStart_1.anchor = GridBagConstraints.EAST;
 		gbc_btnStart_1.insets = new Insets(0, 0, 5, 5);
 		gbc_btnStart_1.gridx = 1;
-		gbc_btnStart_1.gridy = 11;
+		gbc_btnStart_1.gridy = 14;
 		contentPane.add(btnStart_1, gbc_btnStart_1);
-		
-				JScrollPane scrollPane = new JScrollPane();
-				GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-				gbc_scrollPane.gridwidth = 20;
-				gbc_scrollPane.gridheight = 12;
-				gbc_scrollPane.fill = GridBagConstraints.BOTH;
-				gbc_scrollPane.gridx = 2;
-				gbc_scrollPane.gridy = 12;
-				contentPane.add(scrollPane, gbc_scrollPane);
-				
-						txt_log = new JTextArea();
-						scrollPane.setViewportView(txt_log);
 
-		showMap(getPlaceholderImg(450,450));
-		showPheromoneMap(getPlaceholderImg(450,450));
+		JScrollPane scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridwidth = 20;
+		gbc_scrollPane.gridheight = 12;
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 2;
+		gbc_scrollPane.gridy = 15;
+		contentPane.add(scrollPane, gbc_scrollPane);
+
+		txt_log = new JTextArea();
+		scrollPane.setViewportView(txt_log);
+
+		showMap(getPlaceholderImg(450, 450));
+		showPheromoneMap(getPlaceholderImg(450, 450));
 	}
 
 	private Conf getConf() {
 		String file = txt_file.getText();
 		int aco_ant_count = Integer.parseInt(txt_aco_antcount.getText());
 		int aco_nr_of_runs = Integer.parseInt(txt_aco_runs.getText());
-		return new Conf(file, aco_ant_count, aco_nr_of_runs);
+		double aco_alpha = Double.parseDouble(txt_alpha.getText());
+		double aco_beta = Double.parseDouble(txt_beta.getText());
+		double aco_evaporation = Double.parseDouble(txt_evaporation.getText());
+		return new Conf(file, aco_ant_count, aco_nr_of_runs, aco_alpha,
+				aco_beta, aco_evaporation);
 	}
 
 	private BufferedImage getPlaceholderImg(int w, int h) {
-		BufferedImage image = new BufferedImage(w,h,
+		BufferedImage image = new BufferedImage(w, h,
 				BufferedImage.TYPE_INT_RGB);
 
 		Graphics2D g = image.createGraphics();
