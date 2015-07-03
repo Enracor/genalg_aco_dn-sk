@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +13,8 @@ public class Map {
 
 	private List<City> cities;
 	private List<Path> paths;
+	private java.util.Map<String, Path> optimized_paths; // Zum schnelleren
+															// Finden der Pfade
 	private int width;
 	private int height;
 
@@ -35,18 +38,18 @@ public class Map {
 
 			// Map erzeugen
 			Map map = new Map(fields.get(0).size(), fields.size());
-			int x = 0, y = 0, city=1;
+			int x = 0, y = 0, city = 1;
 			for (List<Integer> row : fields) {
-				x=0;
-				for(int field : row){
-					if(field != 0){
+				x = 0;
+				for (int field : row) {
+					if (field != 0) {
 						map.addCity(x, y, city++);
 					}
 					x++;
 				}
 				y++;
 			}
-			
+
 			map.createAllPaths();
 			return map;
 		} catch (IOException e) {
@@ -58,6 +61,7 @@ public class Map {
 	public Map(int width, int height) {
 		cities = new LinkedList<>();
 		paths = new LinkedList<>();
+		optimized_paths = new HashMap<String, Path>();
 		this.width = width;
 		this.height = height;
 		createAllPaths();
@@ -67,13 +71,19 @@ public class Map {
 		int city1 = getMin(cityNr1, cityNr2);
 		int city2 = getMax(cityNr1, cityNr2);
 
-		for (Path path : paths) {
-			if (path.city1.nr == city1 && path.city2.nr == city2)
-				return path;
-		}
+		Path path = optimized_paths.get(city1 + "," + city2);
+		if (path == null)
+			throw new IllegalStateException("Kein Pfad von " + cityNr1
+					+ " nach " + cityNr2);
+		return path;
 
-		throw new IllegalStateException("Kein Pfad von " + cityNr1 + " nach "
-				+ cityNr2);
+		// for (Path path : paths) {
+		// if (path.city1.nr == city1 && path.city2.nr == city2)
+		// return path;
+		// }
+		//
+		// throw new IllegalStateException("Kein Pfad von " + cityNr1 + " nach "
+		// + cityNr2);
 	}
 
 	/**
@@ -130,6 +140,13 @@ public class Map {
 				Path path = new Path(cityA, cityB);
 				paths.add(path);
 			}
+		}
+
+		// Optimierte Map für Pfade erezugen
+		for (Path path : paths) {
+			int city1 = getMin(path.city1.nr, path.city2.nr);
+			int city2 = getMax(path.city1.nr, path.city2.nr);
+			optimized_paths.put(city1 + "," + city2, path);
 		}
 	}
 
