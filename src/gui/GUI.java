@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.DefaultCaret;
 
 import java.awt.GridBagLayout;
 
@@ -353,6 +354,8 @@ public class GUI extends JFrame {
 		contentPane.add(scrollPane, gbc_scrollPane);
 
 		txt_log = new JTextArea();
+		DefaultCaret caret = (DefaultCaret)txt_log.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		scrollPane.setViewportView(txt_log);
 
 		showMap(getPlaceholderImg(450, 450));
