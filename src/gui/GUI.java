@@ -287,9 +287,10 @@ public class GUI extends JFrame {
 	}
 
 	private Conf getConf() {
+		String file = txt_file.getText();
 		int aco_ant_count = Integer.parseInt(txt_aco_antcount.getText());
 		int aco_nr_of_runs = Integer.parseInt(txt_aco_runs.getText());
-		return new Conf(aco_ant_count, aco_nr_of_runs);
+		return new Conf(file, aco_ant_count, aco_nr_of_runs);
 	}
 
 	private BufferedImage getPlaceholderImg(int w, int h) {
