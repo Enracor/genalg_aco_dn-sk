@@ -12,7 +12,8 @@ public class ACO {
 	private Map map;
 	double evaporation;
 
-	public ACO(int antCount, Map map, double alpha, double beta, double evaporation) {
+	public ACO(int antCount, Map map, double alpha, double beta,
+			double evaporation) {
 		this.antCount = antCount;
 		this.evaporation = evaporation;
 		ants = new Ant[antCount];
@@ -35,10 +36,11 @@ public class ACO {
 					|| way.getLength() < shortestWay.getLength()) {
 				shortestWay = way;
 			}
+			PheromoneMarker.mark(way);
 		}
 
-		// Pfade mit Pheromonen markieren
-		PheromoneMarker.mark(map, ants, evaporation);
+		// Verdampfung
+		PheromoneMarker.evaporate(map, evaporation);
 
 		return shortestWay;
 	}
