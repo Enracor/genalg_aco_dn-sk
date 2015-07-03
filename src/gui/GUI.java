@@ -28,6 +28,7 @@ import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 
 import jdk.nashorn.internal.ir.CallNode.EvalArgs;
+import javax.swing.SwingConstants;
 
 public class GUI extends JFrame {
 
@@ -113,7 +114,8 @@ public class GUI extends JFrame {
 		contentPane.add(lblFile, gbc_lblFile);
 
 		txt_file = new JTextField();
-		txt_file.setText("map.txt");
+		txt_file.setHorizontalAlignment(SwingConstants.LEFT);
+		txt_file.setText("map_200.txt");
 		GridBagConstraints gbc_txt_file = new GridBagConstraints();
 		gbc_txt_file.insets = new Insets(0, 0, 5, 5);
 		gbc_txt_file.fill = GridBagConstraints.HORIZONTAL;
