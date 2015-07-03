@@ -32,6 +32,8 @@ public class Map {
 				List<Integer> row = new ArrayList<Integer>();
 				fields.add(row);
 				for (String field : line.split(" ")) {
+					if (field.equals(""))
+						continue;
 					row.add(Integer.parseInt(field));
 				}
 			}
