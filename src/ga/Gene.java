@@ -162,7 +162,6 @@ public class Gene implements Comparable<Gene> {
 		int n = (int) (mutation_rate * length);
 
 		// Positionen ermitteln und werte tauschen
-		int[] positions = new int[n];
 		for (int i = 0; i < n; i++) {
 			int pos1 = randInt(0, length);
 			int pos2 = randInt(0, length);

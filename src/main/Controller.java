@@ -8,6 +8,7 @@ import aco.Way;
 import map.Map;
 import map.PheromoneDrawer;
 import map.WayDrawer;
+import ga.DoubleBest50Replicator;
 import ga.Gene;
 import ga.GreedyCrossover;
 import ga.NoneReplicator;
@@ -56,7 +57,7 @@ public class Controller implements GUIListener {
 		Map map = Map.fromFile(conf.file);
 		Simulator simulator = new Simulator(conf.population_size, map,
 				conf.mutation_rate, conf.recombination_rate, true,
-				new NoneReplicator(), new GreedyCrossover(),
+				new DoubleBest50Replicator(), new GreedyCrossover(),
 				new TSPFitnessFunc());
 
 		int generations_count;
