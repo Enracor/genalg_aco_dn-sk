@@ -56,9 +56,8 @@ public class Controller implements GUIListener {
 		gui.clearLog();
 		Map map = Map.fromFile(conf.file);
 		Simulator simulator = new Simulator(conf.population_size, map,
-				conf.mutation_rate, conf.recombination_rate, true,
-				new DoubleBest50Replicator(), new GreedyCrossover(),
-				new TSPFitnessFunc());
+				conf.mutation_rate, conf.recombination_rate, conf.protect_best,
+				conf.replicator, conf.recombinator, new TSPFitnessFunc());
 
 		int generations_count;
 		for (generations_count = 0; generations_count < conf.max_generations; generations_count++) {

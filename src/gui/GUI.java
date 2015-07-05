@@ -1,5 +1,12 @@
 package gui;
 
+import ga.DoubleBest50Replicator;
+import ga.GreedyCrossover;
+import ga.NoneReplicator;
+import ga.PartialCrossover;
+import ga.Recombinator;
+import ga.Replicator;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 
@@ -28,8 +35,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
 
-import jdk.nashorn.internal.ir.CallNode.EvalArgs;
 import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JCheckBox;
 
 public class GUI extends JFrame {
 
@@ -48,6 +57,9 @@ public class GUI extends JFrame {
 	private JTextField txt_beta;
 	private JTextField txt_evaporation;
 	private JTextField txt_maxgener;
+	private JComboBox cmb_repl_scheme;
+	private JComboBox cmb_recomb_scheme;
+	private JCheckBox chk_protect_best;
 
 	/**
 	 * Fügt dem Ausgabe-Bereich eine Nachricht in einer neuen Zeile hinzu.
@@ -90,15 +102,16 @@ public class GUI extends JFrame {
 		gbl_contentPane.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0,
 				0, 0, 0, 0 };
 		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0, 0 };
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_contentPane.columnWeights = new double[] { 0.0, 1.0, 0.0,
 				Double.MIN_VALUE, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
 				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, Double.MIN_VALUE };
+				0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
 		JLabel lblAllgemein = new JLabel("Allgemein");
+		lblAllgemein.setForeground(Color.GRAY);
 		lblAllgemein.setFont(new Font("Dialog", Font.BOLD, 14));
 		GridBagConstraints gbc_lblAllgemein = new GridBagConstraints();
 		gbc_lblAllgemein.anchor = GridBagConstraints.WEST;
@@ -126,8 +139,8 @@ public class GUI extends JFrame {
 		contentPane.add(txt_file, gbc_txt_file);
 		txt_file.setColumns(10);
 
-		JLabel lblKarte = new JLabel("Karte");
-		lblKarte.setFont(new Font("Dialog", Font.BOLD, 14));
+		JLabel lblKarte = new JLabel("Bester Weg");
+		lblKarte.setFont(new Font("Dialog", Font.BOLD, 12));
 		GridBagConstraints gbc_lblKarte = new GridBagConstraints();
 		gbc_lblKarte.insets = new Insets(0, 0, 5, 5);
 		gbc_lblKarte.gridx = 2;
@@ -138,7 +151,7 @@ public class GUI extends JFrame {
 		GridBagConstraints gbc_lbl_map = new GridBagConstraints();
 		gbc_lbl_map.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_map.gridwidth = 10;
-		gbc_lbl_map.gridheight = 15;
+		gbc_lbl_map.gridheight = 18;
 		gbc_lbl_map.gridx = 2;
 		gbc_lbl_map.gridy = 1;
 		contentPane.add(lbl_map, gbc_lbl_map);
@@ -153,13 +166,14 @@ public class GUI extends JFrame {
 		lbl_pmap = new JLabel("");
 		GridBagConstraints gbc_lbl_pmap = new GridBagConstraints();
 		gbc_lbl_pmap.gridwidth = 10;
-		gbc_lbl_pmap.gridheight = 15;
+		gbc_lbl_pmap.gridheight = 18;
 		gbc_lbl_pmap.insets = new Insets(0, 0, 5, 0);
 		gbc_lbl_pmap.gridx = 12;
 		gbc_lbl_pmap.gridy = 1;
 		contentPane.add(lbl_pmap, gbc_lbl_pmap);
 
 		JLabel lblTsp = new JLabel("TSP");
+		lblTsp.setForeground(Color.GRAY);
 		lblTsp.setFont(new Font("Dialog", Font.BOLD, 14));
 		GridBagConstraints gbc_lblTsp = new GridBagConstraints();
 		gbc_lblTsp.anchor = GridBagConstraints.WEST;
@@ -246,20 +260,75 @@ public class GUI extends JFrame {
 		gbc_txt_maxgener.gridy = 7;
 		contentPane.add(txt_maxgener, gbc_txt_maxgener);
 		txt_maxgener.setColumns(10);
+
+		JLabel lblReplicationScheme = new JLabel("replication scheme");
+		GridBagConstraints gbc_lblReplicationScheme = new GridBagConstraints();
+		gbc_lblReplicationScheme.anchor = GridBagConstraints.EAST;
+		gbc_lblReplicationScheme.insets = new Insets(0, 0, 5, 5);
+		gbc_lblReplicationScheme.gridx = 0;
+		gbc_lblReplicationScheme.gridy = 8;
+		contentPane.add(lblReplicationScheme, gbc_lblReplicationScheme);
+
+		cmb_repl_scheme = new JComboBox();
+		cmb_repl_scheme.setFont(new Font("Dialog", Font.BOLD, 10));
+		cmb_repl_scheme.setModel(new DefaultComboBoxModel(new String[] {
+				"Double Best 50%", "None" }));
+		GridBagConstraints gbc_cmb_repl_scheme = new GridBagConstraints();
+		gbc_cmb_repl_scheme.insets = new Insets(0, 0, 5, 5);
+		gbc_cmb_repl_scheme.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cmb_repl_scheme.gridx = 1;
+		gbc_cmb_repl_scheme.gridy = 8;
+		contentPane.add(cmb_repl_scheme, gbc_cmb_repl_scheme);
+
+		JLabel lblRecombinationScheme = new JLabel("recombination scheme");
+		GridBagConstraints gbc_lblRecombinationScheme = new GridBagConstraints();
+		gbc_lblRecombinationScheme.anchor = GridBagConstraints.EAST;
+		gbc_lblRecombinationScheme.insets = new Insets(0, 0, 5, 5);
+		gbc_lblRecombinationScheme.gridx = 0;
+		gbc_lblRecombinationScheme.gridy = 9;
+		contentPane.add(lblRecombinationScheme, gbc_lblRecombinationScheme);
+
+		cmb_recomb_scheme = new JComboBox();
+		cmb_recomb_scheme.setFont(new Font("Dialog", Font.BOLD, 10));
+		cmb_recomb_scheme.setModel(new DefaultComboBoxModel(new String[] {
+				"Greedy Crossover", "Partial Crossover" }));
+		GridBagConstraints gbc_cmb_recomb_scheme = new GridBagConstraints();
+		gbc_cmb_recomb_scheme.insets = new Insets(0, 0, 5, 5);
+		gbc_cmb_recomb_scheme.fill = GridBagConstraints.HORIZONTAL;
+		gbc_cmb_recomb_scheme.gridx = 1;
+		gbc_cmb_recomb_scheme.gridy = 9;
+		contentPane.add(cmb_recomb_scheme, gbc_cmb_recomb_scheme);
+
+		JLabel lblProtectBest = new JLabel("protect best");
+		GridBagConstraints gbc_lblProtectBest = new GridBagConstraints();
+		gbc_lblProtectBest.anchor = GridBagConstraints.EAST;
+		gbc_lblProtectBest.insets = new Insets(0, 0, 5, 5);
+		gbc_lblProtectBest.gridx = 0;
+		gbc_lblProtectBest.gridy = 10;
+		contentPane.add(lblProtectBest, gbc_lblProtectBest);
+
+		chk_protect_best = new JCheckBox("");
+		GridBagConstraints gbc_chk_protect_best = new GridBagConstraints();
+		gbc_chk_protect_best.anchor = GridBagConstraints.WEST;
+		gbc_chk_protect_best.insets = new Insets(0, 0, 5, 5);
+		gbc_chk_protect_best.gridx = 1;
+		gbc_chk_protect_best.gridy = 10;
+		contentPane.add(chk_protect_best, gbc_chk_protect_best);
 		GridBagConstraints gbc_btnStart = new GridBagConstraints();
 		gbc_btnStart.anchor = GridBagConstraints.EAST;
 		gbc_btnStart.insets = new Insets(0, 0, 5, 5);
 		gbc_btnStart.gridx = 1;
-		gbc_btnStart.gridy = 8;
+		gbc_btnStart.gridy = 11;
 		contentPane.add(btnStart, gbc_btnStart);
 
 		JLabel lblCoo = new JLabel("ACO");
+		lblCoo.setForeground(Color.GRAY);
 		lblCoo.setFont(new Font("Dialog", Font.BOLD, 14));
 		GridBagConstraints gbc_lblCoo = new GridBagConstraints();
 		gbc_lblCoo.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCoo.anchor = GridBagConstraints.WEST;
 		gbc_lblCoo.gridx = 0;
-		gbc_lblCoo.gridy = 9;
+		gbc_lblCoo.gridy = 12;
 		contentPane.add(lblCoo, gbc_lblCoo);
 
 		JButton btnStart_1 = new JButton("Start");
@@ -274,7 +343,7 @@ public class GUI extends JFrame {
 		gbc_lblTodo_1.anchor = GridBagConstraints.EAST;
 		gbc_lblTodo_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTodo_1.gridx = 0;
-		gbc_lblTodo_1.gridy = 10;
+		gbc_lblTodo_1.gridy = 13;
 		contentPane.add(lblTodo_1, gbc_lblTodo_1);
 
 		txt_aco_antcount = new JTextField();
@@ -283,7 +352,7 @@ public class GUI extends JFrame {
 		gbc_txt_aco_antcount.insets = new Insets(0, 0, 5, 5);
 		gbc_txt_aco_antcount.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txt_aco_antcount.gridx = 1;
-		gbc_txt_aco_antcount.gridy = 10;
+		gbc_txt_aco_antcount.gridy = 13;
 		contentPane.add(txt_aco_antcount, gbc_txt_aco_antcount);
 		txt_aco_antcount.setColumns(10);
 
@@ -292,7 +361,7 @@ public class GUI extends JFrame {
 		gbc_lblRuns.anchor = GridBagConstraints.EAST;
 		gbc_lblRuns.insets = new Insets(0, 0, 5, 5);
 		gbc_lblRuns.gridx = 0;
-		gbc_lblRuns.gridy = 11;
+		gbc_lblRuns.gridy = 14;
 		contentPane.add(lblRuns, gbc_lblRuns);
 
 		txt_aco_runs = new JTextField();
@@ -301,7 +370,7 @@ public class GUI extends JFrame {
 		gbc_txt_aco_runs.insets = new Insets(0, 0, 5, 5);
 		gbc_txt_aco_runs.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txt_aco_runs.gridx = 1;
-		gbc_txt_aco_runs.gridy = 11;
+		gbc_txt_aco_runs.gridy = 14;
 		contentPane.add(txt_aco_runs, gbc_txt_aco_runs);
 		txt_aco_runs.setColumns(10);
 
@@ -310,7 +379,7 @@ public class GUI extends JFrame {
 		gbc_lblAlpha.anchor = GridBagConstraints.EAST;
 		gbc_lblAlpha.insets = new Insets(0, 0, 5, 5);
 		gbc_lblAlpha.gridx = 0;
-		gbc_lblAlpha.gridy = 12;
+		gbc_lblAlpha.gridy = 15;
 		contentPane.add(lblAlpha, gbc_lblAlpha);
 
 		txt_alpha = new JTextField();
@@ -320,7 +389,7 @@ public class GUI extends JFrame {
 		gbc_txt_alpha.insets = new Insets(0, 0, 5, 5);
 		gbc_txt_alpha.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txt_alpha.gridx = 1;
-		gbc_txt_alpha.gridy = 12;
+		gbc_txt_alpha.gridy = 15;
 		contentPane.add(txt_alpha, gbc_txt_alpha);
 		txt_alpha.setColumns(10);
 
@@ -329,7 +398,7 @@ public class GUI extends JFrame {
 		gbc_lblBeta.anchor = GridBagConstraints.EAST;
 		gbc_lblBeta.insets = new Insets(0, 0, 5, 5);
 		gbc_lblBeta.gridx = 0;
-		gbc_lblBeta.gridy = 13;
+		gbc_lblBeta.gridy = 16;
 		contentPane.add(lblBeta, gbc_lblBeta);
 
 		txt_beta = new JTextField();
@@ -338,7 +407,7 @@ public class GUI extends JFrame {
 		gbc_txt_beta.insets = new Insets(0, 0, 5, 5);
 		gbc_txt_beta.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txt_beta.gridx = 1;
-		gbc_txt_beta.gridy = 13;
+		gbc_txt_beta.gridy = 16;
 		contentPane.add(txt_beta, gbc_txt_beta);
 		txt_beta.setColumns(10);
 
@@ -347,7 +416,7 @@ public class GUI extends JFrame {
 		gbc_lblEvaporation.anchor = GridBagConstraints.EAST;
 		gbc_lblEvaporation.insets = new Insets(0, 0, 5, 5);
 		gbc_lblEvaporation.gridx = 0;
-		gbc_lblEvaporation.gridy = 14;
+		gbc_lblEvaporation.gridy = 17;
 		contentPane.add(lblEvaporation, gbc_lblEvaporation);
 
 		txt_evaporation = new JTextField();
@@ -356,14 +425,14 @@ public class GUI extends JFrame {
 		gbc_txt_evaporation.insets = new Insets(0, 0, 5, 5);
 		gbc_txt_evaporation.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txt_evaporation.gridx = 1;
-		gbc_txt_evaporation.gridy = 14;
+		gbc_txt_evaporation.gridy = 17;
 		contentPane.add(txt_evaporation, gbc_txt_evaporation);
 		txt_evaporation.setColumns(10);
 		GridBagConstraints gbc_btnStart_1 = new GridBagConstraints();
 		gbc_btnStart_1.anchor = GridBagConstraints.EAST;
 		gbc_btnStart_1.insets = new Insets(0, 0, 5, 5);
 		gbc_btnStart_1.gridx = 1;
-		gbc_btnStart_1.gridy = 15;
+		gbc_btnStart_1.gridy = 18;
 		contentPane.add(btnStart_1, gbc_btnStart_1);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -372,7 +441,7 @@ public class GUI extends JFrame {
 		gbc_scrollPane.gridheight = 12;
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 2;
-		gbc_scrollPane.gridy = 16;
+		gbc_scrollPane.gridy = 19;
 		contentPane.add(scrollPane, gbc_scrollPane);
 
 		txt_log = new JTextArea();
@@ -396,9 +465,32 @@ public class GUI extends JFrame {
 		double recomb_rate = Double
 				.parseDouble(txt_recombinationrate.getText());
 		int max_gener = Integer.parseInt(txt_maxgener.getText());
+
+		Replicator replicator = null;
+		switch ((String) cmb_repl_scheme.getSelectedItem()) {
+		case "Double Best 50%":
+			replicator = new DoubleBest50Replicator();
+			break;
+		case "None":
+			replicator = new NoneReplicator();
+			break;
+		}
+
+		Recombinator recombinator = null;
+		switch ((String) cmb_recomb_scheme.getSelectedItem()) {
+		case "Greedy Crossover":
+			recombinator = new GreedyCrossover();
+			break;
+		case "Partial Crossover":
+			recombinator = new PartialCrossover();
+			break;
+		}
+		
+		boolean prot_best = chk_protect_best.isSelected();
+
 		return new Conf(file, aco_ant_count, aco_nr_of_runs, aco_alpha,
 				aco_beta, aco_evaporation, pop_size, mutation_rate,
-				recomb_rate, max_gener);
+				recomb_rate, max_gener, replicator, recombinator, prot_best);
 	}
 
 	private BufferedImage getPlaceholderImg(int w, int h) {
@@ -411,5 +503,4 @@ public class GUI extends JFrame {
 
 		return image;
 	}
-
 }
