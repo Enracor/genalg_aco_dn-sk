@@ -37,16 +37,17 @@ public class GUI extends JFrame {
 	private JTextField txt_file;
 	private JTextArea txt_log;
 	private GUIListener listener;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txt_genecount;
+	private JTextField txt_mutationrate;
 	private JTextField txt_aco_antcount;
-	private JTextField textField_3;
+	private JTextField txt_recombinationrate;
 	private JLabel lbl_map;
 	private JLabel lbl_pmap;
 	private JTextField txt_aco_runs;
 	private JTextField txt_alpha;
 	private JTextField txt_beta;
 	private JTextField txt_evaporation;
+	private JTextField txt_maxgener;
 
 	/**
 	 * Fügt dem Ausgabe-Bereich eine Nachricht in einer neuen Zeile hinzu.
@@ -81,7 +82,7 @@ public class GUI extends JFrame {
 	public GUI(GUIListener listener) {
 		this.listener = listener;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1100, 700);
+		setBounds(100, 100, 1180, 700);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -89,12 +90,12 @@ public class GUI extends JFrame {
 		gbl_contentPane.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0,
 				0, 0, 0, 0 };
 		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-				0, 0, 0, 0, 0, 0, 0, 0 };
+				0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_contentPane.columnWeights = new double[] { 0.0, 1.0, 0.0,
 				Double.MIN_VALUE, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
 				0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				Double.MIN_VALUE };
+				0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
 		JLabel lblAllgemein = new JLabel("Allgemein");
@@ -137,7 +138,7 @@ public class GUI extends JFrame {
 		GridBagConstraints gbc_lbl_map = new GridBagConstraints();
 		gbc_lbl_map.insets = new Insets(0, 0, 5, 5);
 		gbc_lbl_map.gridwidth = 10;
-		gbc_lbl_map.gridheight = 14;
+		gbc_lbl_map.gridheight = 15;
 		gbc_lbl_map.gridx = 2;
 		gbc_lbl_map.gridy = 1;
 		contentPane.add(lbl_map, gbc_lbl_map);
@@ -152,7 +153,7 @@ public class GUI extends JFrame {
 		lbl_pmap = new JLabel("");
 		GridBagConstraints gbc_lbl_pmap = new GridBagConstraints();
 		gbc_lbl_pmap.gridwidth = 10;
-		gbc_lbl_pmap.gridheight = 14;
+		gbc_lbl_pmap.gridheight = 15;
 		gbc_lbl_pmap.insets = new Insets(0, 0, 5, 0);
 		gbc_lbl_pmap.gridx = 12;
 		gbc_lbl_pmap.gridy = 1;
@@ -174,24 +175,25 @@ public class GUI extends JFrame {
 			}
 		});
 
-		JLabel lblGenlen = new JLabel("param");
-		GridBagConstraints gbc_lblGenlen = new GridBagConstraints();
-		gbc_lblGenlen.anchor = GridBagConstraints.EAST;
-		gbc_lblGenlen.insets = new Insets(0, 0, 5, 5);
-		gbc_lblGenlen.gridx = 0;
-		gbc_lblGenlen.gridy = 4;
-		contentPane.add(lblGenlen, gbc_lblGenlen);
+		JLabel lblGenecount = new JLabel("gene count");
+		GridBagConstraints gbc_lblGenecount = new GridBagConstraints();
+		gbc_lblGenecount.anchor = GridBagConstraints.EAST;
+		gbc_lblGenecount.insets = new Insets(0, 0, 5, 5);
+		gbc_lblGenecount.gridx = 0;
+		gbc_lblGenecount.gridy = 4;
+		contentPane.add(lblGenecount, gbc_lblGenecount);
 
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 4;
-		contentPane.add(textField, gbc_textField);
-		textField.setColumns(10);
+		txt_genecount = new JTextField();
+		txt_genecount.setText("100");
+		GridBagConstraints gbc_txt_genecount = new GridBagConstraints();
+		gbc_txt_genecount.insets = new Insets(0, 0, 5, 5);
+		gbc_txt_genecount.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txt_genecount.gridx = 1;
+		gbc_txt_genecount.gridy = 4;
+		contentPane.add(txt_genecount, gbc_txt_genecount);
+		txt_genecount.setColumns(10);
 
-		JLabel lblTodo = new JLabel("param");
+		JLabel lblTodo = new JLabel("mutation rate");
 		GridBagConstraints gbc_lblTodo = new GridBagConstraints();
 		gbc_lblTodo.anchor = GridBagConstraints.EAST;
 		gbc_lblTodo.insets = new Insets(0, 0, 5, 5);
@@ -199,16 +201,17 @@ public class GUI extends JFrame {
 		gbc_lblTodo.gridy = 5;
 		contentPane.add(lblTodo, gbc_lblTodo);
 
-		textField_1 = new JTextField();
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.gridx = 1;
-		gbc_textField_1.gridy = 5;
-		contentPane.add(textField_1, gbc_textField_1);
-		textField_1.setColumns(10);
+		txt_mutationrate = new JTextField();
+		txt_mutationrate.setText("0.01");
+		GridBagConstraints gbc_txt_mutationrate = new GridBagConstraints();
+		gbc_txt_mutationrate.insets = new Insets(0, 0, 5, 5);
+		gbc_txt_mutationrate.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txt_mutationrate.gridx = 1;
+		gbc_txt_mutationrate.gridy = 5;
+		contentPane.add(txt_mutationrate, gbc_txt_mutationrate);
+		txt_mutationrate.setColumns(10);
 
-		JLabel lblParam = new JLabel("param");
+		JLabel lblParam = new JLabel("recombination rate");
 		GridBagConstraints gbc_lblParam = new GridBagConstraints();
 		gbc_lblParam.anchor = GridBagConstraints.EAST;
 		gbc_lblParam.insets = new Insets(0, 0, 5, 5);
@@ -216,19 +219,38 @@ public class GUI extends JFrame {
 		gbc_lblParam.gridy = 6;
 		contentPane.add(lblParam, gbc_lblParam);
 
-		textField_3 = new JTextField();
-		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
-		gbc_textField_3.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_3.gridx = 1;
-		gbc_textField_3.gridy = 6;
-		contentPane.add(textField_3, gbc_textField_3);
-		textField_3.setColumns(10);
+		txt_recombinationrate = new JTextField();
+		txt_recombinationrate.setText("0.5");
+		GridBagConstraints gbc_txt_recombinationrate = new GridBagConstraints();
+		gbc_txt_recombinationrate.insets = new Insets(0, 0, 5, 5);
+		gbc_txt_recombinationrate.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txt_recombinationrate.gridx = 1;
+		gbc_txt_recombinationrate.gridy = 6;
+		contentPane.add(txt_recombinationrate, gbc_txt_recombinationrate);
+		txt_recombinationrate.setColumns(10);
+
+		JLabel lblMaxGenerations = new JLabel("max generations");
+		GridBagConstraints gbc_lblMaxGenerations = new GridBagConstraints();
+		gbc_lblMaxGenerations.anchor = GridBagConstraints.EAST;
+		gbc_lblMaxGenerations.insets = new Insets(0, 0, 5, 5);
+		gbc_lblMaxGenerations.gridx = 0;
+		gbc_lblMaxGenerations.gridy = 7;
+		contentPane.add(lblMaxGenerations, gbc_lblMaxGenerations);
+
+		txt_maxgener = new JTextField();
+		txt_maxgener.setText("3000");
+		GridBagConstraints gbc_txt_maxgener = new GridBagConstraints();
+		gbc_txt_maxgener.insets = new Insets(0, 0, 5, 5);
+		gbc_txt_maxgener.fill = GridBagConstraints.HORIZONTAL;
+		gbc_txt_maxgener.gridx = 1;
+		gbc_txt_maxgener.gridy = 7;
+		contentPane.add(txt_maxgener, gbc_txt_maxgener);
+		txt_maxgener.setColumns(10);
 		GridBagConstraints gbc_btnStart = new GridBagConstraints();
 		gbc_btnStart.anchor = GridBagConstraints.EAST;
 		gbc_btnStart.insets = new Insets(0, 0, 5, 5);
 		gbc_btnStart.gridx = 1;
-		gbc_btnStart.gridy = 7;
+		gbc_btnStart.gridy = 8;
 		contentPane.add(btnStart, gbc_btnStart);
 
 		JLabel lblCoo = new JLabel("ACO");
@@ -237,7 +259,7 @@ public class GUI extends JFrame {
 		gbc_lblCoo.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCoo.anchor = GridBagConstraints.WEST;
 		gbc_lblCoo.gridx = 0;
-		gbc_lblCoo.gridy = 8;
+		gbc_lblCoo.gridy = 9;
 		contentPane.add(lblCoo, gbc_lblCoo);
 
 		JButton btnStart_1 = new JButton("Start");
@@ -252,7 +274,7 @@ public class GUI extends JFrame {
 		gbc_lblTodo_1.anchor = GridBagConstraints.EAST;
 		gbc_lblTodo_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTodo_1.gridx = 0;
-		gbc_lblTodo_1.gridy = 9;
+		gbc_lblTodo_1.gridy = 10;
 		contentPane.add(lblTodo_1, gbc_lblTodo_1);
 
 		txt_aco_antcount = new JTextField();
@@ -261,7 +283,7 @@ public class GUI extends JFrame {
 		gbc_txt_aco_antcount.insets = new Insets(0, 0, 5, 5);
 		gbc_txt_aco_antcount.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txt_aco_antcount.gridx = 1;
-		gbc_txt_aco_antcount.gridy = 9;
+		gbc_txt_aco_antcount.gridy = 10;
 		contentPane.add(txt_aco_antcount, gbc_txt_aco_antcount);
 		txt_aco_antcount.setColumns(10);
 
@@ -270,7 +292,7 @@ public class GUI extends JFrame {
 		gbc_lblRuns.anchor = GridBagConstraints.EAST;
 		gbc_lblRuns.insets = new Insets(0, 0, 5, 5);
 		gbc_lblRuns.gridx = 0;
-		gbc_lblRuns.gridy = 10;
+		gbc_lblRuns.gridy = 11;
 		contentPane.add(lblRuns, gbc_lblRuns);
 
 		txt_aco_runs = new JTextField();
@@ -279,7 +301,7 @@ public class GUI extends JFrame {
 		gbc_txt_aco_runs.insets = new Insets(0, 0, 5, 5);
 		gbc_txt_aco_runs.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txt_aco_runs.gridx = 1;
-		gbc_txt_aco_runs.gridy = 10;
+		gbc_txt_aco_runs.gridy = 11;
 		contentPane.add(txt_aco_runs, gbc_txt_aco_runs);
 		txt_aco_runs.setColumns(10);
 
@@ -288,7 +310,7 @@ public class GUI extends JFrame {
 		gbc_lblAlpha.anchor = GridBagConstraints.EAST;
 		gbc_lblAlpha.insets = new Insets(0, 0, 5, 5);
 		gbc_lblAlpha.gridx = 0;
-		gbc_lblAlpha.gridy = 11;
+		gbc_lblAlpha.gridy = 12;
 		contentPane.add(lblAlpha, gbc_lblAlpha);
 
 		txt_alpha = new JTextField();
@@ -298,7 +320,7 @@ public class GUI extends JFrame {
 		gbc_txt_alpha.insets = new Insets(0, 0, 5, 5);
 		gbc_txt_alpha.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txt_alpha.gridx = 1;
-		gbc_txt_alpha.gridy = 11;
+		gbc_txt_alpha.gridy = 12;
 		contentPane.add(txt_alpha, gbc_txt_alpha);
 		txt_alpha.setColumns(10);
 
@@ -307,7 +329,7 @@ public class GUI extends JFrame {
 		gbc_lblBeta.anchor = GridBagConstraints.EAST;
 		gbc_lblBeta.insets = new Insets(0, 0, 5, 5);
 		gbc_lblBeta.gridx = 0;
-		gbc_lblBeta.gridy = 12;
+		gbc_lblBeta.gridy = 13;
 		contentPane.add(lblBeta, gbc_lblBeta);
 
 		txt_beta = new JTextField();
@@ -316,7 +338,7 @@ public class GUI extends JFrame {
 		gbc_txt_beta.insets = new Insets(0, 0, 5, 5);
 		gbc_txt_beta.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txt_beta.gridx = 1;
-		gbc_txt_beta.gridy = 12;
+		gbc_txt_beta.gridy = 13;
 		contentPane.add(txt_beta, gbc_txt_beta);
 		txt_beta.setColumns(10);
 
@@ -325,7 +347,7 @@ public class GUI extends JFrame {
 		gbc_lblEvaporation.anchor = GridBagConstraints.EAST;
 		gbc_lblEvaporation.insets = new Insets(0, 0, 5, 5);
 		gbc_lblEvaporation.gridx = 0;
-		gbc_lblEvaporation.gridy = 13;
+		gbc_lblEvaporation.gridy = 14;
 		contentPane.add(lblEvaporation, gbc_lblEvaporation);
 
 		txt_evaporation = new JTextField();
@@ -334,14 +356,14 @@ public class GUI extends JFrame {
 		gbc_txt_evaporation.insets = new Insets(0, 0, 5, 5);
 		gbc_txt_evaporation.fill = GridBagConstraints.HORIZONTAL;
 		gbc_txt_evaporation.gridx = 1;
-		gbc_txt_evaporation.gridy = 13;
+		gbc_txt_evaporation.gridy = 14;
 		contentPane.add(txt_evaporation, gbc_txt_evaporation);
 		txt_evaporation.setColumns(10);
 		GridBagConstraints gbc_btnStart_1 = new GridBagConstraints();
 		gbc_btnStart_1.anchor = GridBagConstraints.EAST;
 		gbc_btnStart_1.insets = new Insets(0, 0, 5, 5);
 		gbc_btnStart_1.gridx = 1;
-		gbc_btnStart_1.gridy = 14;
+		gbc_btnStart_1.gridy = 15;
 		contentPane.add(btnStart_1, gbc_btnStart_1);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -350,11 +372,11 @@ public class GUI extends JFrame {
 		gbc_scrollPane.gridheight = 12;
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
 		gbc_scrollPane.gridx = 2;
-		gbc_scrollPane.gridy = 15;
+		gbc_scrollPane.gridy = 16;
 		contentPane.add(scrollPane, gbc_scrollPane);
 
 		txt_log = new JTextArea();
-		DefaultCaret caret = (DefaultCaret)txt_log.getCaret();
+		DefaultCaret caret = (DefaultCaret) txt_log.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		scrollPane.setViewportView(txt_log);
 
@@ -369,8 +391,14 @@ public class GUI extends JFrame {
 		double aco_alpha = Double.parseDouble(txt_alpha.getText());
 		double aco_beta = Double.parseDouble(txt_beta.getText());
 		double aco_evaporation = Double.parseDouble(txt_evaporation.getText());
+		int pop_size = Integer.parseInt(txt_genecount.getText());
+		double mutation_rate = Double.parseDouble(txt_mutationrate.getText());
+		double recomb_rate = Double
+				.parseDouble(txt_recombinationrate.getText());
+		int max_gener = Integer.parseInt(txt_maxgener.getText());
 		return new Conf(file, aco_ant_count, aco_nr_of_runs, aco_alpha,
-				aco_beta, aco_evaporation);
+				aco_beta, aco_evaporation, pop_size, mutation_rate,
+				recomb_rate, max_gener);
 	}
 
 	private BufferedImage getPlaceholderImg(int w, int h) {
