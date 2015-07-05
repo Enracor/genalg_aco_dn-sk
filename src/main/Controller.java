@@ -9,6 +9,7 @@ import map.Map;
 import map.PheromoneDrawer;
 import map.WayDrawer;
 import ga.Gene;
+import ga.GreedyCrossover;
 import ga.NoneReplicator;
 import ga.PartialCrossover;
 import ga.Simulator;
@@ -55,7 +56,7 @@ public class Controller implements GUIListener {
 		Map map = Map.fromFile(conf.file);
 		Simulator simulator = new Simulator(conf.population_size, map,
 				conf.mutation_rate, conf.recombination_rate, true,
-				new NoneReplicator(), new PartialCrossover(),
+				new NoneReplicator(), new GreedyCrossover(),
 				new TSPFitnessFunc());
 
 		int generations_count;

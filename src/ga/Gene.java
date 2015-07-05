@@ -103,6 +103,10 @@ public class Gene implements Comparable<Gene> {
 		return part;
 	}
 
+	public Map getMap() {
+		return map;
+	}
+
 	public void set(int index, short value) {
 		gene[index] = value;
 	}
