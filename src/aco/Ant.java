@@ -87,13 +87,16 @@ public class Ant
         }
         
         // berechne einzel Wahrscheinlichkeiten
+        double range_start = 0;
         for (Path p : paths)
         {
             if (Double.compare(p.weight, sum) > 1)
             {
                 throw new IllegalStateException(String.format("weight %f > sum %f", p.weight, sum));
             }
-            availablePaths.add(new ValueSet(p, p.weight / sum));
+            double probability = range_start + p.weight / sum;
+            range_start = probability;
+            availablePaths.add(new ValueSet(p, probability ));
         }
         Collections.sort(availablePaths);
         
@@ -116,7 +119,7 @@ public class Ant
                 return;
             }
         }
-        // füge höchsten path hinzu
+        // fï¿½ge hï¿½chsten path hinzu
         if (availablePaths.size() != 0)
         {
             ValueSet vs = availablePaths.get(availablePaths.size() - 1);
