@@ -73,11 +73,11 @@
 				<section>
 					<h2>Gewichtung der Pfade</h2>
 					<br>
-					$$a_{ij} = \frac{(\tau_{ij})^{\alpha} (\eta_{ij})^{\beta}}{\sum\limits_{l \epsilon N_{i}} (\tau_{ij})^{\alpha} (\eta_{ij})^{\beta}}$$
+					$$a_{ij} = \frac{(\tau_{ij})^{\alpha} (\eta_{ij})^{\beta}}{\sum\limits_{l \epsilon N_{i}} (\tau_{ij})^{\alpha} (\eta_{il})^{\beta}}$$
 					<br>
 					<table>
 					<tr><th>$$a_{ij}$$</th><td>Gewicht für Pfad von Stadt i nach j</td></tr>
-					<tr><th>$$\tau_{ij}$$</th> <td>Pheromonkonzentration</td></tr>
+					<tr><th>$$\tau$$</th> <td>Pheromonkonzentration</td></tr>
 					<tr><th>$$\eta_{ij} = \frac{1}{d_{ij}}$$ </th><td>Attraktivität</td></tr>
 					<tr><th>$$N_{i}$$</th><td>Alle Pfade von Stadt i</td></tr>
 					<tr></tr>
@@ -87,11 +87,23 @@
 				<section>
 					<h2>Gewichtung der Pfade</h2>
 					<br>
-					$$a_{ij} = \frac{(\tau_{ij})^{\alpha} (\eta_{ij})^{\beta}}{\sum\limits_{l \epsilon N_{i}} (\tau_{ij})^{\alpha} (\eta_{ij})^{\beta}}$$
+					$$a_{ij} = \frac{(\tau_{ij})^{\alpha} (\eta_{ij})^{\beta}}{\sum\limits_{l \epsilon N_{i}} (\tau_{ij})^{\alpha} (\eta_{il})^{\beta}}$$
 					<br>
 					<table>
 					<tr><th>$$\alpha$$</th><td><i>Autokatalytischer Mechanismus</i><br>Anziehung von hoher Pheromonkonzentration</td></tr>
 					<tr><th>$$\beta$$</th> <td><i>implicit solution evaluation</i><br>Anziehung von kurzer Strecke</td></tr>
+					<tr></tr>
+					</table>
+				</section>
+				
+				<section>
+					<h2>Wahrscheinlichkeit</h2>
+					<br>
+					$$p_{ij}^{k} = \frac{a_{ij}}{\sum\limits_{l \epsilon N_{i}^{k}} a_{il}}$$
+					<br>
+					<table>
+					<tr><th>$$p_{ij}^{k}$$</th><td>Wahrsch. für Ameise <i>k</i> Pfad <i>ij</i> zu wählen</td></tr>
+					<tr><th>$$N_{i}^{k}$$</th> <td><i>Von Ameise <i>k</i> nicht besuchte Städte</td></tr>
 					<tr></tr>
 					</table>
 				</section>
