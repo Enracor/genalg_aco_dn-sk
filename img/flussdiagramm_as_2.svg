@@ -46,7 +46,7 @@
   </font>
  </defs>
  <defs class="TextShapeIndex">
-  <g ooo:slide="id1" ooo:id-list="id3 id4 id5 id6 id7 id8 id9 id10 id11 id12 id13 id14 id15 id16 id17 id18 id19 id20 id21 id22 id23"/>
+  <g ooo:slide="id1" ooo:id-list="id3 id4 id5 id6 id7 id8 id9 id10 id11 id12 id13 id14 id15 id16 id17 id18 id19 id20 id21 id22 id23 id24"/>
  </defs>
  <defs class="EmbeddedBulletChars">
   <g id="bullet-char-template(57356)" transform="scale(0.00048828125,-0.00048828125)">
@@ -90,6 +90,11 @@
     <g class="Page">
      <g class="com.sun.star.drawing.CustomShape">
       <g id="id3">
+       <path fill="rgb(238,238,238)" stroke="none" d="M 19950,24800 L 14200,24800 14200,15100 25700,15100 25700,24800 19950,24800 Z"/>
+      </g>
+     </g>
+     <g class="com.sun.star.drawing.CustomShape">
+      <g id="id4">
        <path fill="rgb(255,149,14)" stroke="none" d="M 6200,8700 L 9750,6700 13301,8700 9750,10700 6200,8700 6200,8700 Z M 6200,6700 L 6200,6700 Z M 13301,10701 L 13301,10701 Z"/>
        <path fill="none" stroke="rgb(0,0,0)" d="M 6200,8700 L 9750,6700 13301,8700 9750,10700 6200,8700 6200,8700 Z"/>
        <path fill="none" stroke="rgb(0,0,0)" d="M 6200,6700 L 6200,6700 Z"/>
@@ -98,7 +103,7 @@
       </g>
      </g>
      <g class="com.sun.star.drawing.CustomShape">
-      <g id="id4">
+      <g id="id5">
        <path fill="rgb(255,149,14)" stroke="none" d="M 500,2300 L 4050,300 7601,2300 4050,4300 500,2300 500,2300 Z M 500,300 L 500,300 Z M 7601,4301 L 7601,4301 Z"/>
        <path fill="none" stroke="rgb(0,0,0)" d="M 500,2300 L 4050,300 7601,2300 4050,4300 500,2300 500,2300 Z"/>
        <path fill="none" stroke="rgb(0,0,0)" d="M 500,300 L 500,300 Z"/>
@@ -107,23 +112,23 @@
       </g>
      </g>
      <g class="com.sun.star.drawing.ConnectorShape">
-      <g id="id5">
+      <g id="id6">
        <path fill="none" stroke="rgb(0,0,0)" d="M 7600,2300 L 9750,2300 9750,6270"/>
        <path fill="rgb(0,0,0)" stroke="none" d="M 9750,6700 L 9900,6250 9600,6250 9750,6700 Z"/>
-       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="564px" font-weight="700"><tspan class="TextPosition" x="7998" y="4651"><tspan fill="rgb(0,0,0)" stroke="none">nein</tspan></tspan></tspan></text>
-      </g>
-     </g>
-     <g class="com.sun.star.drawing.CustomShape">
-      <g id="id6">
-       <path fill="rgb(114,159,207)" stroke="none" d="M 14300,11800 L 21401,11800 21401,13501 14300,13501 14300,11800 14300,11800 Z M 14300,11800 L 14300,11800 Z M 21401,13501 L 21401,13501 Z"/>
-       <path fill="none" stroke="rgb(0,0,0)" d="M 14300,11800 L 21401,11800 21401,13501 14300,13501 14300,11800 14300,11800 Z"/>
-       <path fill="none" stroke="rgb(0,0,0)" d="M 14300,11800 L 14300,11800 Z"/>
-       <path fill="none" stroke="rgb(0,0,0)" d="M 21401,13501 L 21401,13501 Z"/>
-       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="494px" font-weight="700"><tspan class="TextPosition" x="15776" y="12782"><tspan fill="rgb(0,0,0)" stroke="none">Erzeuge Ameise</tspan></tspan></tspan></text>
+       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="564px" font-weight="700"><tspan class="TextPosition" x="5965" y="4651"><tspan fill="rgb(0,0,0)" stroke="none">            </tspan><tspan fill="rgb(0,0,0)" stroke="none">nein</tspan></tspan></tspan></text>
       </g>
      </g>
      <g class="com.sun.star.drawing.CustomShape">
       <g id="id7">
+       <path fill="rgb(114,159,207)" stroke="none" d="M 14300,12300 L 21401,12300 21401,14001 14300,14001 14300,12300 14300,12300 Z M 14300,12300 L 14300,12300 Z M 21401,14001 L 21401,14001 Z"/>
+       <path fill="none" stroke="rgb(0,0,0)" d="M 14300,12300 L 21401,12300 21401,14001 14300,14001 14300,12300 14300,12300 Z"/>
+       <path fill="none" stroke="rgb(0,0,0)" d="M 14300,12300 L 14300,12300 Z"/>
+       <path fill="none" stroke="rgb(0,0,0)" d="M 21401,14001 L 21401,14001 Z"/>
+       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="494px" font-weight="700"><tspan class="TextPosition" x="15776" y="13282"><tspan fill="rgb(0,0,0)" stroke="none">Erzeuge Ameise</tspan></tspan></tspan></text>
+      </g>
+     </g>
+     <g class="com.sun.star.drawing.CustomShape">
+      <g id="id8">
        <path fill="rgb(255,149,14)" stroke="none" d="M 14300,17200 L 17850,15200 21401,17200 17850,19200 14300,17200 14300,17200 Z M 14300,15200 L 14300,15200 Z M 21401,19201 L 21401,19201 Z"/>
        <path fill="none" stroke="rgb(0,0,0)" d="M 14300,17200 L 17850,15200 21401,17200 17850,19200 14300,17200 14300,17200 Z"/>
        <path fill="none" stroke="rgb(0,0,0)" d="M 14300,15200 L 14300,15200 Z"/>
@@ -132,7 +137,7 @@
       </g>
      </g>
      <g class="com.sun.star.drawing.CustomShape">
-      <g id="id8">
+      <g id="id9">
        <path fill="rgb(114,159,207)" stroke="none" d="M 18400,20000 L 25501,20000 25501,21701 18400,21701 18400,20000 18400,20000 Z M 18400,20000 L 18400,20000 Z M 25501,21701 L 25501,21701 Z"/>
        <path fill="none" stroke="rgb(0,0,0)" d="M 18400,20000 L 25501,20000 25501,21701 18400,21701 18400,20000 18400,20000 Z"/>
        <path fill="none" stroke="rgb(0,0,0)" d="M 18400,20000 L 18400,20000 Z"/>
@@ -141,7 +146,7 @@
       </g>
      </g>
      <g class="com.sun.star.drawing.CustomShape">
-      <g id="id9">
+      <g id="id10">
        <path fill="rgb(114,159,207)" stroke="none" d="M 18401,22501 L 25502,22501 25502,24202 18401,24202 18401,22501 18401,22501 Z M 18401,22501 L 18401,22501 Z M 25502,24202 L 25502,24202 Z"/>
        <path fill="none" stroke="rgb(0,0,0)" d="M 18401,22501 L 25502,22501 25502,24202 18401,24202 18401,22501 18401,22501 Z"/>
        <path fill="none" stroke="rgb(0,0,0)" d="M 18401,22501 L 18401,22501 Z"/>
@@ -150,83 +155,83 @@
       </g>
      </g>
      <g class="com.sun.star.drawing.ConnectorShape">
-      <g id="id10">
-       <path fill="none" stroke="rgb(0,0,0)" d="M 13300,8700 L 17850,8700 17850,11370"/>
-       <path fill="rgb(0,0,0)" stroke="none" d="M 17850,11800 L 18000,11350 17700,11350 17850,11800 Z"/>
-       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="564px" font-weight="700"><tspan class="TextPosition" x="14898" y="10401"><tspan fill="rgb(0,0,0)" stroke="none">nein</tspan></tspan></tspan></text>
-      </g>
-     </g>
-     <g class="com.sun.star.drawing.ConnectorShape">
       <g id="id11">
-       <path fill="none" stroke="rgb(0,0,0)" d="M 21400,17200 L 21950,17200 21950,19570"/>
-       <path fill="rgb(0,0,0)" stroke="none" d="M 21950,20000 L 22100,19550 21800,19550 21950,20000 Z"/>
-       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="564px" font-weight="700"><tspan class="TextPosition" x="19812" y="18751"><tspan fill="rgb(0,0,0)" stroke="none">       </tspan><tspan fill="rgb(0,0,0)" stroke="none">nein</tspan></tspan></tspan></text>
+       <path fill="none" stroke="rgb(0,0,0)" d="M 13300,8700 L 17850,8700 17850,11870"/>
+       <path fill="rgb(0,0,0)" stroke="none" d="M 17850,12300 L 18000,11850 17700,11850 17850,12300 Z"/>
+       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="564px" font-weight="700"><tspan class="TextPosition" x="13712" y="10651"><tspan fill="rgb(0,0,0)" stroke="none">       </tspan><tspan fill="rgb(0,0,0)" stroke="none">nein</tspan></tspan></tspan></text>
       </g>
      </g>
      <g class="com.sun.star.drawing.ConnectorShape">
       <g id="id12">
+       <path fill="none" stroke="rgb(0,0,0)" d="M 21400,17200 L 21950,17200 21950,19570"/>
+       <path fill="rgb(0,0,0)" stroke="none" d="M 21950,20000 L 22100,19550 21800,19550 21950,20000 Z"/>
+       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="564px" font-weight="700"><tspan class="TextPosition" x="19643" y="18751"><tspan fill="rgb(0,0,0)" stroke="none">        </tspan><tspan fill="rgb(0,0,0)" stroke="none">nein</tspan></tspan></tspan></text>
+      </g>
+     </g>
+     <g class="com.sun.star.drawing.ConnectorShape">
+      <g id="id13">
        <path fill="none" stroke="rgb(0,0,0)" d="M 21951,24201 L 21951,24703 17850,24703 17850,19630"/>
        <path fill="rgb(0,0,0)" stroke="none" d="M 17850,19200 L 17700,19650 18000,19650 17850,19200 Z"/>
       </g>
      </g>
      <g class="com.sun.star.drawing.ConnectorShape">
-      <g id="id13">
-       <path fill="none" stroke="rgb(0,0,0)" d="M 17850,13500 L 17850,14770"/>
+      <g id="id14">
+       <path fill="none" stroke="rgb(0,0,0)" d="M 17850,14000 L 17850,14770"/>
        <path fill="rgb(0,0,0)" stroke="none" d="M 17850,15200 L 18000,14750 17700,14750 17850,15200 Z"/>
       </g>
      </g>
      <g class="com.sun.star.drawing.ConnectorShape">
-      <g id="id14">
-       <path fill="none" stroke="rgb(0,0,0)" d="M 14300,17200 L 9750,17200 9750,16630"/>
-       <path fill="rgb(0,0,0)" stroke="none" d="M 9750,16200 L 9600,16650 9900,16650 9750,16200 Z"/>
-       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="564px" font-weight="700"><tspan class="TextPosition" x="11687" y="17809"><tspan fill="rgb(0,0,0)" stroke="none">ja</tspan></tspan></tspan></text>
-      </g>
-     </g>
-     <g class="com.sun.star.drawing.CustomShape">
       <g id="id15">
-       <path fill="rgb(114,159,207)" stroke="none" d="M 6200,14500 L 13301,14500 13301,16201 6200,16201 6200,14500 6200,14500 Z M 6200,14500 L 6200,14500 Z M 13301,16201 L 13301,16201 Z"/>
-       <path fill="none" stroke="rgb(0,0,0)" d="M 6200,14500 L 13301,14500 13301,16201 6200,16201 6200,14500 6200,14500 Z"/>
-       <path fill="none" stroke="rgb(0,0,0)" d="M 6200,14500 L 6200,14500 Z"/>
-       <path fill="none" stroke="rgb(0,0,0)" d="M 13301,16201 L 13301,16201 Z"/>
-       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="494px" font-weight="700"><tspan class="TextPosition" x="8565" y="15198"><tspan fill="rgb(0,0,0)" stroke="none">Ameise: </tspan></tspan></tspan><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="494px" font-weight="700"><tspan class="TextPosition" x="6639" y="15765"><tspan fill="rgb(0,0,0)" stroke="none">Pheromone ausschütten</tspan></tspan></tspan></text>
+       <path fill="none" stroke="rgb(0,0,0)" d="M 14300,17200 L 9750,17200 9750,16930"/>
+       <path fill="rgb(0,0,0)" stroke="none" d="M 9750,16500 L 9600,16950 9900,16950 9750,16500 Z"/>
+       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="564px" font-weight="700"><tspan class="TextPosition" x="11687" y="17959"><tspan fill="rgb(0,0,0)" stroke="none">ja</tspan></tspan></tspan></text>
       </g>
      </g>
      <g class="com.sun.star.drawing.CustomShape">
       <g id="id16">
-       <path fill="rgb(114,159,207)" stroke="none" d="M 6201,11801 L 13302,11801 13302,13502 6201,13502 6201,11801 6201,11801 Z M 6201,11801 L 6201,11801 Z M 13302,13502 L 13302,13502 Z"/>
-       <path fill="none" stroke="rgb(0,0,0)" d="M 6201,11801 L 13302,11801 13302,13502 6201,13502 6201,11801 6201,11801 Z"/>
-       <path fill="none" stroke="rgb(0,0,0)" d="M 6201,11801 L 6201,11801 Z"/>
-       <path fill="none" stroke="rgb(0,0,0)" d="M 13302,13502 L 13302,13502 Z"/>
-       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="494px" font-weight="700"><tspan class="TextPosition" x="7825" y="12783"><tspan fill="rgb(0,0,0)" stroke="none">Ameise stirbt</tspan></tspan></tspan></text>
+       <path fill="rgb(114,159,207)" stroke="none" d="M 6200,14800 L 13301,14800 13301,16501 6200,16501 6200,14800 6200,14800 Z M 6200,14800 L 6200,14800 Z M 13301,16501 L 13301,16501 Z"/>
+       <path fill="none" stroke="rgb(0,0,0)" d="M 6200,14800 L 13301,14800 13301,16501 6200,16501 6200,14800 6200,14800 Z"/>
+       <path fill="none" stroke="rgb(0,0,0)" d="M 6200,14800 L 6200,14800 Z"/>
+       <path fill="none" stroke="rgb(0,0,0)" d="M 13301,16501 L 13301,16501 Z"/>
+       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="494px" font-weight="700"><tspan class="TextPosition" x="8565" y="15498"><tspan fill="rgb(0,0,0)" stroke="none">Ameise: </tspan></tspan></tspan><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="494px" font-weight="700"><tspan class="TextPosition" x="6639" y="16065"><tspan fill="rgb(0,0,0)" stroke="none">Pheromone ausschütten</tspan></tspan></tspan></text>
       </g>
      </g>
-     <g class="com.sun.star.drawing.ConnectorShape">
+     <g class="com.sun.star.drawing.CustomShape">
       <g id="id17">
-       <path fill="none" stroke="rgb(0,0,0)" d="M 9750,14500 L 9750,14001 9751,14001 9751,13931"/>
-       <path fill="rgb(0,0,0)" stroke="none" d="M 9751,13501 L 9601,13951 9901,13951 9751,13501 Z"/>
+       <path fill="rgb(114,159,207)" stroke="none" d="M 6201,12301 L 13302,12301 13302,14002 6201,14002 6201,12301 6201,12301 Z M 6201,12301 L 6201,12301 Z M 13302,14002 L 13302,14002 Z"/>
+       <path fill="none" stroke="rgb(0,0,0)" d="M 6201,12301 L 13302,12301 13302,14002 6201,14002 6201,12301 6201,12301 Z"/>
+       <path fill="none" stroke="rgb(0,0,0)" d="M 6201,12301 L 6201,12301 Z"/>
+       <path fill="none" stroke="rgb(0,0,0)" d="M 13302,14002 L 13302,14002 Z"/>
+       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="494px" font-weight="700"><tspan class="TextPosition" x="7825" y="13283"><tspan fill="rgb(0,0,0)" stroke="none">Ameise stirbt</tspan></tspan></tspan></text>
       </g>
      </g>
      <g class="com.sun.star.drawing.ConnectorShape">
       <g id="id18">
-       <path fill="none" stroke="rgb(0,0,0)" d="M 9751,11801 L 9751,11251 9750,11251 9750,11130"/>
-       <path fill="rgb(0,0,0)" stroke="none" d="M 9750,10700 L 9600,11150 9900,11150 9750,10700 Z"/>
+       <path fill="none" stroke="rgb(0,0,0)" d="M 9750,14800 L 9750,14430"/>
+       <path fill="rgb(0,0,0)" stroke="none" d="M 9751,14001 L 9600,14451 9900,14451 9751,14001 Z"/>
       </g>
      </g>
      <g class="com.sun.star.drawing.ConnectorShape">
       <g id="id19">
-       <path fill="none" stroke="rgb(0,0,0)" d="M 6200,8700 L 4050,8700 4050,7330"/>
-       <path fill="rgb(0,0,0)" stroke="none" d="M 4050,6900 L 3900,7350 4200,7350 4050,6900 Z"/>
-       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="564px" font-weight="700"><tspan class="TextPosition" x="4787" y="7951"><tspan fill="rgb(0,0,0)" stroke="none">ja</tspan></tspan></tspan></text>
+       <path fill="none" stroke="rgb(0,0,0)" d="M 9751,12301 L 9751,11501 9750,11501 9750,11130"/>
+       <path fill="rgb(0,0,0)" stroke="none" d="M 9750,10700 L 9600,11150 9900,11150 9750,10700 Z"/>
       </g>
      </g>
      <g class="com.sun.star.drawing.ConnectorShape">
       <g id="id20">
+       <path fill="none" stroke="rgb(0,0,0)" d="M 6200,8700 L 4050,8700 4050,7330"/>
+       <path fill="rgb(0,0,0)" stroke="none" d="M 4050,6900 L 3900,7350 4200,7350 4050,6900 Z"/>
+       <text class="TextShape"><tspan class="TextParagraph" font-family="Liberation Mono, monospace" font-size="564px" font-weight="700"><tspan class="TextPosition" x="3601" y="7951"><tspan fill="rgb(0,0,0)" stroke="none">  </tspan><tspan fill="rgb(0,0,0)" stroke="none">ja     </tspan></tspan></tspan></text>
+      </g>
+     </g>
+     <g class="com.sun.star.drawing.ConnectorShape">
+      <g id="id21">
        <path fill="none" stroke="rgb(0,0,0)" d="M 21950,21700 L 21950,22072"/>
        <path fill="rgb(0,0,0)" stroke="none" d="M 21951,22501 L 22100,22051 21800,22051 21951,22501 Z"/>
       </g>
      </g>
      <g class="com.sun.star.drawing.CustomShape">
-      <g id="id21">
+      <g id="id22">
        <path fill="rgb(114,159,207)" stroke="none" d="M 500,5200 L 7601,5200 7601,6901 500,6901 500,5200 500,5200 Z M 500,5200 L 500,5200 Z M 7601,6901 L 7601,6901 Z"/>
        <path fill="none" stroke="rgb(0,0,0)" d="M 500,5200 L 7601,5200 7601,6901 500,6901 500,5200 500,5200 Z"/>
        <path fill="none" stroke="rgb(0,0,0)" d="M 500,5200 L 500,5200 Z"/>
@@ -235,12 +240,12 @@
       </g>
      </g>
      <g class="com.sun.star.drawing.ConnectorShape">
-      <g id="id22">
+      <g id="id23">
        <path fill="none" stroke="rgb(0,0,0)" d="M 4050,5200 L 4050,5200 Z"/>
       </g>
      </g>
      <g class="com.sun.star.drawing.ConnectorShape">
-      <g id="id23">
+      <g id="id24">
        <path fill="none" stroke="rgb(0,0,0)" d="M 4050,5200 L 4050,4730"/>
        <path fill="rgb(0,0,0)" stroke="none" d="M 4050,4300 L 3900,4750 4200,4750 4050,4300 Z"/>
       </g>
