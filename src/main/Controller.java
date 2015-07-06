@@ -43,11 +43,15 @@ public class Controller implements GUIListener {
 		ACO aco = new ACO(conf.aco_ant_count, map, conf.aco_alpha,
 				conf.aco_beta, conf.aco_evaporation);
 
+		Way best = null;
 		for (int i = 0; i < conf.aco_nr_of_runs; i++) {
-			gui.log("Starte Durchlauf: " + i);
 			Way way = aco.next();
-			showMapImages(way, map, true);
-			gui.log("Length: " + way.getLength());
+			if (best == null || way.getLength() < best.getLength()) {
+				best = way;
+				showMapImages(way, map, true);
+			}
+			gui.log(i + ": Length: " + way.getLength());
+			gui.log("best: " + best.getLength());
 		}
 	}
 
